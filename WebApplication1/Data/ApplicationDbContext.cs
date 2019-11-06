@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Models;
 
 namespace WebApplication1.Data
 {
@@ -20,5 +21,7 @@ namespace WebApplication1.Data
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Customer", NormalizedName = "Customer".ToUpper() });
         }
+
+        public DbSet<Customer> Customers { get; set; }
     }
 }
