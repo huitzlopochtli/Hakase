@@ -9,11 +9,11 @@ namespace WebApplication1.Models
     public class Customer : BaseEntity
     {
         [Required]
-        [DisplayName("名（メイ")]
+        [DisplayName("名（メイ)")]
         public string FNameHira { get; set; }
 
         [Required]
-        [DisplayName("姓（セイ")]
+        [DisplayName("姓（セイ)")]
         public string LNameHira { get; set; }
 
         [Required]
@@ -24,15 +24,12 @@ namespace WebApplication1.Models
         [DisplayName("セイ")]
         public string LNameKata { get; set; }
 
-        [Required]
         [DisplayName("電話番号")]
         public string Phone { get; set; }
 
-        [Required]
         [DisplayName("携帯番号")]
         public string PhoneMobile { get; set; }
 
-        [Required]
         [DisplayName("生年月日")]
         public DateTime? DateOfBirth { get; set; }
 
@@ -44,5 +41,20 @@ namespace WebApplication1.Models
         [ForeignKey("User")]
         public string UserId { get; set; }
 
+        public Customer(){ }
+
+        public Customer(string fNameHira, string lNameHira, string fNameKata, string lNameKata, string phone, string phoneMobile, DateTime? dateOfBirth, string address, IdentityUser user, string userId)
+        {
+            FNameHira = fNameHira;
+            LNameHira = lNameHira;
+            FNameKata = fNameKata;
+            LNameKata = lNameKata;
+            Phone = phone;
+            PhoneMobile = phoneMobile;
+            DateOfBirth = dateOfBirth;
+            Address = address;
+            User = user;
+            UserId = userId;
+        }
     }
 }

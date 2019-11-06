@@ -1,11 +1,11 @@
 ﻿@page
-@model RegisterModel
+@model RegisterCustomerModel
+
 @{
     ViewData["Title"] = "Register";
 }
 
 <h2>@ViewData["Title"]</h2>
-<h1>TEST</h1>
 <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -13,19 +13,57 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Input.Email"></label>
+                <label asp-for="Input.Email">メール</label>
                 <input asp-for="Input.Email" class="form-control" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Password"></label>
+                <label asp-for="Input.Password">パスワード</label>
                 <input asp-for="Input.Password" class="form-control" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
+                <label asp-for="Input.ConfirmPassword">パスワード確認</label>
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Customer.FNameHira"></label>
+                <input asp-for="Input.Customer.FNameHira" class="form-control" />
+                <span asp-validation-for="Input.Customer.FNameHira" class="text-danger"></span>
+
+                <label asp-for="Input.Customer.LNameHira"></label>
+                <input asp-for="Input.Customer.LNameHira" class="form-control" />
+                <span asp-validation-for="Input.Customer.LNameHira" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Customer.FNameKata"></label>
+                <input asp-for="Input.Customer.FNameKata" class="form-control" />
+                <span asp-validation-for="Input.Customer.FNameKata" class="text-danger"></span>
+
+                <label asp-for="Input.Customer.LNameKata"></label>
+                <input asp-for="Input.Customer.LNameKata" class="form-control" />
+                <span asp-validation-for="Input.Customer.LNameKata" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Customer.Phone"></label>
+                <input asp-for="Input.Customer.Phone" class="form-control" />
+                <span asp-validation-for="Input.Customer.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Customer.PhoneMobile"></label>
+                <input asp-for="Input.Customer.PhoneMobile" class="form-control" />
+                <span asp-validation-for="Input.Customer.PhoneMobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Customer.DateOfBirth"></label>
+                <input asp-for="Input.Customer.DateOfBirth" class="form-control" />
+                <span asp-validation-for="Input.Customer.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Customer.Address"></label>
+                <input asp-for="Input.Customer.Address" class="form-control" />
+                <span asp-validation-for="Input.Customer.Address" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-default">Register</button>
         </form>

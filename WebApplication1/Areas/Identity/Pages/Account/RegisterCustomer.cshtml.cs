@@ -9,28 +9,32 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using WebApplication1.Data;
 using WebApplication1.Models;
 
 namespace WebApplication1.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class RegisterModelCustomer : PageModel
+    public class RegisterCustomerModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _dbContext;
 
-        public RegisterModelCustomer(
+        public RegisterCustomerModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _dbContext = dbContext;
         }
 
         [BindProperty]
@@ -57,6 +61,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             public Customer Customer { get; set; }
+
         }
 
         public void OnGet(string returnUrl = null)
@@ -70,25 +75,35 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
-                var result = await _userManager.CreateAsync(user, Input.Password);
-                if (result.Succeeded)
+                var resultU = await _userManager.CreateAsync(user, Input.Password);
+                var resultR = await _userManager.AddToRoleAsync(user, "Customer");
+                if (resultU.Succeeded && resultR.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    Input.Customer.UserId = user.Id;
+                    await _dbContext.Customers.AddAsync(Input.Customer);
+                    var resultCustomer = _dbContext.SaveChangesAsync();
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { userId = user.Id, code = code },
-                        protocol: Request.Scheme);
+                    if (resultCustomer.IsCompleted)
+                    {
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var callbackUrl = Url.Page(
+                            "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { userId = user.Id, code = code },
+                            protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return LocalRedirect(returnUrl);
+                    }
+                    else
+                    {
+                        return Page();
+                    }
                 }
-                foreach (var error in result.Errors)
+                foreach (var error in resultU.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
