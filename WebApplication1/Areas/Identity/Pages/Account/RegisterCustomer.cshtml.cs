@@ -61,7 +61,6 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             public Customer Customer { get; set; }
-
         }
 
         public void OnGet(string returnUrl = null)
@@ -76,15 +75,16 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var resultU = await _userManager.CreateAsync(user, Input.Password);
-                var resultR = await _userManager.AddToRoleAsync(user, "Customer");
-                if (resultU.Succeeded && resultR.Succeeded)
-                {
-                    Input.Customer.UserId = user.Id;
-                    await _dbContext.Customers.AddAsync(Input.Customer);
-                    var resultCustomer = _dbContext.SaveChangesAsync();
 
-                    if (resultCustomer.IsCompleted)
+                if (resultU.Succeeded)
+                {
+                    var resultR = await _userManager.AddToRoleAsync(user, "Customer");
+                    if (resultR.Succeeded)
                     {
+                        Input.Customer.UserId = user.Id;
+                        await _dbContext.Customers.AddAsync(Input.Customer);
+                        var resultCustomer = _dbContext.SaveChangesAsync();
+
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         var callbackUrl = Url.Page(
                             "/Account/ConfirmEmail",
@@ -95,13 +95,11 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                         await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                             $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        //await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
+
                     }
-                    else
-                    {
-                        return Page();
-                    }
+
                 }
                 foreach (var error in resultU.Errors)
                 {

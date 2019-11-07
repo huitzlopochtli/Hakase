@@ -153,15 +153,46 @@ namespace WebApplication1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "965f17f2-f5ce-4356-95b4-08375d30156e", "36b7665c-596f-464a-98a9-e095cb672927", "Admin", "ADMIN" });
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    DateCreated = table.Column<DateTime>(nullable: true),
+                    UserCreated = table.Column<string>(nullable: true),
+                    DateModified = table.Column<DateTime>(nullable: true),
+                    UserModified = table.Column<string>(nullable: true),
+                    FNameHira = table.Column<string>(nullable: false),
+                    LNameHira = table.Column<string>(nullable: false),
+                    FNameKata = table.Column<string>(nullable: false),
+                    LNameKata = table.Column<string>(nullable: false),
+                    Phone = table.Column<string>(nullable: true),
+                    PhoneMobile = table.Column<string>(nullable: true),
+                    DateOfBirth = table.Column<DateTime>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Customers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "8fe2089c-de36-4d32-9781-e61436b26b30", "bc0da250-7431-4e98-b291-590bbceecebb", "Customer", "CUSTOMER" });
+                values: new object[] { "b5122689-0dbf-4100-b48d-922296cc86c6", "3f32184f-ee4b-4bad-b250-dd4a23fd61a0", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "ca1f5619-8405-4263-936a-067f8d6046cd", "76572e6a-b028-458a-9df3-27707c17aef2", "Customer", "CUSTOMER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -199,6 +230,11 @@ namespace WebApplication1.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_UserId",
+                table: "Customers",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -217,6 +253,9 @@ namespace WebApplication1.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

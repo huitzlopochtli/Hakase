@@ -9,7 +9,7 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191106045852_initial")]
+    [Migration("20191107022647_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,8 +42,8 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "965f17f2-f5ce-4356-95b4-08375d30156e", ConcurrencyStamp = "36b7665c-596f-464a-98a9-e095cb672927", Name = "Admin", NormalizedName = "ADMIN" },
-                        new { Id = "8fe2089c-de36-4d32-9781-e61436b26b30", ConcurrencyStamp = "bc0da250-7431-4e98-b291-590bbceecebb", Name = "Customer", NormalizedName = "CUSTOMER" }
+                        new { Id = "b5122689-0dbf-4100-b48d-922296cc86c6", ConcurrencyStamp = "3f32184f-ee4b-4bad-b250-dd4a23fd61a0", Name = "Admin", NormalizedName = "ADMIN" },
+                        new { Id = "ca1f5619-8405-4263-936a-067f8d6046cd", ConcurrencyStamp = "76572e6a-b028-458a-9df3-27707c17aef2", Name = "Customer", NormalizedName = "CUSTOMER" }
                     );
                 });
 
@@ -185,6 +185,48 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<DateTime?>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<DateTime?>("DateOfBirth");
+
+                    b.Property<string>("FNameHira")
+                        .IsRequired();
+
+                    b.Property<string>("FNameKata")
+                        .IsRequired();
+
+                    b.Property<string>("LNameHira")
+                        .IsRequired();
+
+                    b.Property<string>("LNameKata")
+                        .IsRequired();
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("PhoneMobile");
+
+                    b.Property<string>("UserCreated");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("UserModified");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -228,6 +270,13 @@ namespace WebApplication1.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Customer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
