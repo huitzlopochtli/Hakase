@@ -14,7 +14,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize("Admin")]
     public class RegisterCustomerModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
