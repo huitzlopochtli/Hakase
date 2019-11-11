@@ -4,13 +4,15 @@ var x, y, tox, toy;
 var zoom = .01; //zoom step per mouse tick 
 var imgX = 0, imgY = 0;
 var mode;
+var buttonX = 350;
+var buttonY = 620;
 
 
 // Different Modes
 var MODES = {
-    PANnZOOM: { value: 0, name: "PNZ", code: "S" },
-    MEDIUM: { value: 1, name: "Medium", code: "M" },
-    LARGE: { value: 2, name: "Large", code: "L" }
+    PANnZOOM: { value: 0, name: "PNZ", code: "P" },
+    Wallpaper: { value: 1, name: "WP", code: "W" },
+    Floor: { value: 2, name: "FL", code: "F" }
 };
 
 function preload() {
@@ -18,6 +20,7 @@ function preload() {
 }
 
 function setup() {
+    disableScroll();
     var canvas = createCanvas(1366, 705);
     canvas.parent('paint');
 
@@ -26,7 +29,7 @@ function setup() {
 
     push();
     fill(230);
-    rect(0, 0, 995, 605, 5);
+    rect(0, 0, w, h, 5);
     pop();
 
     w = tow = 995;
@@ -54,7 +57,7 @@ function draw() {
 
 
     //tween/smooth motion
-    if (mode === MODES.PANnZOOM) {
+    if (mode === MODES.PANnZOOM && mouseX >= 0 && mouseX <= 995 && mouseY >= 0 && mouseY <= 605) {
         x = lerp(x, tox, .1);
         y = lerp(y, toy, .1);
         w = lerp(w, tow, .1);
@@ -84,14 +87,10 @@ function draw() {
 
 
     //Button 
-    var buttonX = 350;
-    var buttonY = 620;
+    
     Button(buttonX, buttonY, "Pan & Zoom");
     Button(buttonX + 80, buttonY, "Text");
     Button(buttonX + 160, buttonY, "Text");
-
-
-
 }
 
 function Button(x, y, textStr) {
@@ -102,6 +101,17 @@ function Button(x, y, textStr) {
     textAlign(CENTER);
     text(textStr, x + 35, y + 55);
     pop();
+}
+
+function mousePressed() {
+    // Check mouse Pressed
+    // Button Pressed 1st
+    if (mouseX >= buttonX &&
+        mouseX <= buttonX + 70 &&
+        mouseY >= buttonY &&
+        mouseY <= buttonY + 70) {
+            mode = MODES.PANnZOOM;
+    }
 }
 
 function mouseDragged() {
@@ -132,4 +142,28 @@ function mouseWheel(event) {
         }
     }
 
+}
+
+
+// Disable Scroll
+function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault)
+        e.preventDefault();
+    e.returnValue = false;
+}
+function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+        preventDefault(e);
+        return false;
+    }
+}
+function disableScroll() {
+    if (window.addEventListener) // older FF
+        window.addEventListener('DOMMouseScroll', preventDefault, false);
+    document.addEventListener('wheel', preventDefault, { passive: false }); // Disable scrolling in Chrome
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.ontouchmove = preventDefault; // mobile
+    document.onkeydown = preventDefaultForScrollKeys;
 }
