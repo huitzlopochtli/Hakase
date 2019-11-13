@@ -9,8 +9,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191107022647_initial")]
-    partial class initial
+    [Migration("20191113091539_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,8 +42,8 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "b5122689-0dbf-4100-b48d-922296cc86c6", ConcurrencyStamp = "3f32184f-ee4b-4bad-b250-dd4a23fd61a0", Name = "Admin", NormalizedName = "ADMIN" },
-                        new { Id = "ca1f5619-8405-4263-936a-067f8d6046cd", ConcurrencyStamp = "76572e6a-b028-458a-9df3-27707c17aef2", Name = "Customer", NormalizedName = "CUSTOMER" }
+                        new { Id = "3d2b2d56-dc90-4761-87e6-1d0fa70687e8", ConcurrencyStamp = "cd4f3864-6121-4e1a-819b-a1d6bb8cf485", Name = "Admin", NormalizedName = "ADMIN" },
+                        new { Id = "a42cf06b-30e4-427e-8451-876c7b8b6559", ConcurrencyStamp = "ca12f259-40d6-411d-976e-a1438256daf5", Name = "Customer", NormalizedName = "CUSTOMER" }
                     );
                 });
 
@@ -137,11 +137,9 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -172,11 +170,9 @@ namespace WebApplication1.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 

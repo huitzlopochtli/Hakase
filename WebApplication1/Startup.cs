@@ -53,7 +53,12 @@ namespace WebApplication1
             //    }).AddRoles<IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+                    {
+                        options.Password.RequireDigit = false;
+                        options.Password.RequiredLength = 4;
+                        options.Password.RequireUppercase = false;
+                    })
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
@@ -69,7 +74,7 @@ namespace WebApplication1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -97,7 +102,7 @@ namespace WebApplication1
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            ApplicationDbInitializer.SeedUsers(userManager);
+           ApplicationDbInitializer.SeedUsers(userManager, context);
         }
     }
 }

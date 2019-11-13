@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using WebApplication1.Models;
 
 namespace WebApplication1.Data
 {
     public static class ApplicationDbInitializer
     {
-        public static void SeedUsers(UserManager<IdentityUser> userManager)
+        public static void SeedUsers(UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             if (userManager.FindByEmailAsync("admin@hakase.com").Result == null)
             {
@@ -39,7 +40,18 @@ namespace WebApplication1.Data
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user, "Customer").Wait();
-
+                    context.Customers.Add(new Customer()
+                    {
+                        FNameHira = "佐助",
+                        LNameKata = "内は",
+                        FNameKata = "サスケ",
+                        LNameHira = "ウチハ",
+                        Phone = "093847893",
+                        DateOfBirth = DateTime.Now,
+                        Address = "〒103-0011 東京都中央区日本橋大伝馬町１１−８ ＨＡＴビル 3F ERAS株式会社",
+                        UserId = user.Id
+                    });
+                    context.SaveChanges();
                 }
             }
 
@@ -56,6 +68,18 @@ namespace WebApplication1.Data
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user, "Customer").Wait();
+                    context.Customers.Add(new Customer()
+                    {
+                        FNameHira = "鳴門",
+                        LNameKata = "うじゅ巻き",
+                        FNameKata = "ナルト",
+                        LNameHira = "ウジュマキ",
+                        Phone = "093847893",
+                        DateOfBirth = DateTime.Now,
+                        Address = "〒103-0011 東京都中央区日本橋大伝馬町１１−８ ＨＡＴビル 3F ERAS株式会社",
+                        UserId = user.Id
+                    });
+                    context.SaveChanges();
                 }
             }
         }
