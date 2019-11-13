@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace WebApplication1.Areas.Identity.Pages.Account
@@ -17,10 +20,12 @@ namespace WebApplication1.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _logger = logger;
         }
 
@@ -76,6 +81,22 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
+                    var currentUser = await _userManager.Users.Where(u => u.Email == Input.Email).SingleOrDefaultAsync();
+
+                    var roles = await _userManager.GetRolesAsync(currentUser);
+
+                    if (roles.Any(r => r == "Admin"))
+                    {
+                        HttpContext.Session.SetString("Role", "Admin");
+                        returnUrl = Url.Content("~/Admin");
+                    }
+
+                    else if (roles.Any(r => r == "Customer"))
+                    {
+                        HttpContext.Session.SetString("Role", "Customer");
+                        returnUrl = Url.Content("~/Customer");
+                    }
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }

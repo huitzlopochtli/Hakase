@@ -4,8 +4,9 @@ var x, y, tox, toy;
 var zoom = .01; //zoom step per mouse tick 
 var imgX = 0, imgY = 0;
 var mode;
-var buttonX = 350;
-var buttonY = 620;
+var buttonX = 270;
+var buttonY = 625;
+var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
 
 // Different Modes
@@ -23,12 +24,12 @@ function setup() {
     disableScroll();
     var canvas = createCanvas(1366, 705);
     canvas.parent('paint');
-
+    noStroke();
 
     // -- background -- 
 
     push();
-    fill(230);
+    fill(255);
     rect(0, 0, w, h, 5);
     pop();
 
@@ -36,7 +37,6 @@ function setup() {
     h = toh = 605;
     x = tox = w / 2;
     y = toy = h / 2;
-
 }
 
 
@@ -44,13 +44,13 @@ function draw() {
     // -- background -- 
 
     push();
-    fill(230);
-    rect(0, 0, 1366, 705, 5);
+    fill(255);
+    rect(0, 0, 1366, 705);
     pop();
 
     push();
-    fill(230);
-    rect(0, 0, 995, 605, 5);
+    fill(255);
+    rect(0, 0, 995, 605);
     pop();
 
     // Main body
@@ -76,21 +76,25 @@ function draw() {
     // Nav
     push();
     fill('#8C8D90');
-    rect(0, 610, 1366, 95, 5);
+    rect(0, 610, 1366, 95);
     pop();
 
     // Side bar
     push();
-    fill(86, 177, 222);
-    rect(1000, 0, 1366, 605, 5);
+    fill('#8C8D90');
+    rect(1000, 0, 1366, 605);
     pop();
 
 
     //Button 
     
     Button(buttonX, buttonY, "Pan & Zoom");
-    Button(buttonX + 80, buttonY, "Text");
-    Button(buttonX + 160, buttonY, "Text");
+    Button(buttonX + 80, buttonY, "Remove Object");
+    Button(buttonX + 160, buttonY, "Wallpaper");
+    Button(buttonX + 240, buttonY, "Floor");
+    Button(buttonX + 320, buttonY, "Angle");
+    Button(buttonX + 400, buttonY, "Apply");
+
 }
 
 function Button(x, y, textStr) {
@@ -114,33 +118,43 @@ function mousePressed() {
     }
 }
 
+
 function mouseDragged() {
     tox += mouseX - pmouseX;
     toy += mouseY - pmouseY;
 }
-
 function mouseWheel(event) {
-    var e = -event.delta;
 
-    if (e > 0) { //zoom in
-        for (var i = 0; i < e; i++) {
-            if (tow > 30 * 995) return; //max zoom
-            tox -= zoom * (mouseX - tox);
-            toy -= zoom * (mouseY - toy);
-            tow *= zoom + 1;
-            toh *= zoom + 1;
+    if (mouseX >= 0 &&
+        mouseX <= w &&
+        mouseY >= 0 &&
+        mouseY <= h) {
+
+
+        var e = -event.delta;
+
+        if (e > 0) { //zoom in
+            for (var i = 0; i < e; i++) {
+                if (tow > 30 * 995) return; //max zoom
+                tox -= zoom * (mouseX - tox);
+                toy -= zoom * (mouseY - toy);
+                tow *= zoom + 1;
+                toh *= zoom + 1;
+            }
+        }
+
+        if (e < 0) { //zoom out
+            for (var i = 0; i < -e; i++) {
+                if (tow < 995) return; //min zoom
+                tox += zoom / (zoom + 1) * (mouseX - tox);
+                toy += zoom / (zoom + 1) * (mouseY - toy);
+                toh /= zoom + 1;
+                tow /= zoom + 1;
+            }
         }
     }
 
-    if (e < 0) { //zoom out
-        for (var i = 0; i < -e; i++) {
-            if (tow < 995) return; //min zoom
-            tox += zoom / (zoom + 1) * (mouseX - tox);
-            toy += zoom / (zoom + 1) * (mouseY - toy);
-            toh /= zoom + 1;
-            tow /= zoom + 1;
-        }
-    }
+    
 
 }
 
