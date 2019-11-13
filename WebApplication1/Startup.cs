@@ -45,12 +45,18 @@ namespace WebApplication1
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options =>
-                {
-                    options.Password.RequireDigit = false;
-                    options.Password.RequiredLength = 4;
-                    options.Password.RequireUppercase = false;
-                }).AddRoles<IdentityRole>()
+            //services.AddDefaultIdentity<IdentityUser>(options =>
+            //    {
+            //        options.Password.RequireDigit = false;
+            //        options.Password.RequiredLength = 4;
+            //        options.Password.RequireUppercase = false;
+            //    }).AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc()
@@ -59,6 +65,7 @@ namespace WebApplication1
                 //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
                 //})
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

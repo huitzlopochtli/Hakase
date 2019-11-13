@@ -39,6 +39,7 @@ namespace WebApplication1.Data
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user, "Customer").Wait();
+
                 }
             }
 
