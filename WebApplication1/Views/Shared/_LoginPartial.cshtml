@@ -12,17 +12,20 @@
 
         @if (SignInManager.IsSignedIn(User))
         {
-            if (Helper.UserRole.Equals("Admin"))
+            if (Helper.UserRole != null)
             {
-                <li>
-                    <a asp-controller="Admin" asp-action="Index">Admin</a>
-                </li>
-            }
-            else if (Helper.UserRole.Equals("Customer"))
-            {
-                <li>
-                    <a asp-controller="Admin" asp-action="Index">Customer</a>
-                </li>
+                if (Helper.UserRole.Equals("Admin"))
+                {
+                    <li>
+                        <a asp-controller="Admin" asp-action="Index">Admin</a>
+                    </li>
+                }
+                else if (Helper.UserRole.Equals("Customer"))
+                {
+                    <li>
+                        <a asp-controller="Admin" asp-action="Index">Customer</a>
+                    </li>
+                }
             }
             <li>
                 <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>

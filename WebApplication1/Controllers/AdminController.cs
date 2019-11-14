@@ -29,9 +29,28 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public IActionResult UserPage()
+        public async Task<IActionResult> UserPage()
         {
-            return View();
+
+
+            var users = _userManager.Users;
+            List < DUser > dUsers= new List<DUser>();
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                string role = "";
+                if (roles[0] == "Admin")
+                    role = "管理者";
+                else if (roles[0] == "Customer")
+                    role = "お客様";
+                dUsers.Add(new DUser()
+                {
+                    Username = user.Email,
+                    Role = role
+                });
+            }
+
+            return View(dUsers);
         }
 
         public IActionResult CustomerPage()
@@ -39,4 +58,10 @@ namespace WebApplication1.Controllers
             return View(_context.Customers);
         }
     }
+    public class DUser
+    {
+        public string Username { get; set; }
+        public string Role { get; set; }
+    }
 }
+
