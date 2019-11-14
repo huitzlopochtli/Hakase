@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "CustomerPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var count = 0;
 }
 <link rel="stylesheet" href="~/lib/AdminLTE/adminlte.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css" />
@@ -23,6 +24,7 @@
 <table class="table table-striped table-bordered" style="width:100%" id="customerTable">
     <thead>
         <tr>
+            <th>#</th>
             <th>
                 @Html.DisplayNameFor(model => model.NameHira)
             </th>
@@ -68,7 +70,13 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
+            <tr>
+                <td>
+                    @{
+                        count += 1;
+                        <p>@count.ToString()</p>
+                }
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NameHira)
             </td>
@@ -113,6 +121,6 @@
                 <a asp-action="CustomerDelete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-        }
+    }
     </tbody>
 </table>

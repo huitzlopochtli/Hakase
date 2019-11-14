@@ -9,17 +9,17 @@ namespace WebApplication1.Models
     public class Customer : BaseEntity
     {
         [Required]
-        [DisplayName("名前　ふり")]
+        [DisplayName("名前(ふり)")]
         public string NameHira { get; set; }
 
         [Required]
-        [DisplayName("名前　カタ")]
+        [DisplayName("名前(カタ)")]
         public string NameKata { get; set; }
         [Required]
-        [DisplayName("会社の名前")]
+        [DisplayName("会社の名前(ふり)")]
         public string CompanyNameHira { get; set; }
         [Required]
-        [DisplayName("会社の名前 カタ")]
+        [DisplayName("会社の名前(カタ)")]
         public string CompanyNameKata { get; set; }
         [Required]
         [DisplayName("会社のメール")]

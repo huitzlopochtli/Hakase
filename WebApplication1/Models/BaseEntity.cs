@@ -14,11 +14,11 @@ namespace WebApplication1.Models
 
         [DisplayName("作成日")]
         public DateTime? DateCreated { get; set; }
-        [DisplayName("ユーザークリエット")]
+        [DisplayName("作成者")]
         public string UserCreated { get; set; }
         [DisplayName("変更日")]
         public DateTime? DateModified { get; set; }
-        [DisplayName("ユーザーモディファイ")]
+        [DisplayName("編集者")]
         public string UserModified { get; set; }
     }
 }
