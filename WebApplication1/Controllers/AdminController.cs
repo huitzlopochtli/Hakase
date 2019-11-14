@@ -31,8 +31,6 @@ namespace WebApplication1.Controllers
 
         public async Task<IActionResult> UserPage()
         {
-
-
             var users = _userManager.Users;
             List < DUser > dUsers= new List<DUser>();
             foreach (var user in users)

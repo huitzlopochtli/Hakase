@@ -96,8 +96,8 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                             $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                         //await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-
+                        _userManager.AddToRoleAsync(user, "Admin").Wait();
+                        return RedirectToAction("CustomerPage", "Admin");
                     }
 
                 }
