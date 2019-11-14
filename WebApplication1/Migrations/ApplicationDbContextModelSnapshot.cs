@@ -40,8 +40,8 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "3d2b2d56-dc90-4761-87e6-1d0fa70687e8", ConcurrencyStamp = "cd4f3864-6121-4e1a-819b-a1d6bb8cf485", Name = "Admin", NormalizedName = "ADMIN" },
-                        new { Id = "a42cf06b-30e4-427e-8451-876c7b8b6559", ConcurrencyStamp = "ca12f259-40d6-411d-976e-a1438256daf5", Name = "Customer", NormalizedName = "CUSTOMER" }
+                        new { Id = "0c7f2e61-6749-42f8-aa10-3849e599d602", ConcurrencyStamp = "80a018cf-9e8c-4ee1-b7bd-540f223fb865", Name = "Admin", NormalizedName = "ADMIN" },
+                        new { Id = "538944f5-08f8-4435-9ed5-5e6208f41216", ConcurrencyStamp = "ea3bdd69-5b90-4c37-a2f4-4dedf3524a0c", Name = "Customer", NormalizedName = "CUSTOMER" }
                     );
                 });
 
@@ -186,22 +186,25 @@ namespace WebApplication1.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<string>("CompanyEmail")
+                        .IsRequired();
+
+                    b.Property<string>("CompanyNameHira")
+                        .IsRequired();
+
+                    b.Property<string>("CompanyNameKata")
+                        .IsRequired();
+
                     b.Property<DateTime?>("DateCreated");
 
                     b.Property<DateTime?>("DateModified");
 
                     b.Property<DateTime?>("DateOfBirth");
 
-                    b.Property<string>("FNameHira")
+                    b.Property<string>("NameHira")
                         .IsRequired();
 
-                    b.Property<string>("FNameKata")
-                        .IsRequired();
-
-                    b.Property<string>("LNameHira")
-                        .IsRequired();
-
-                    b.Property<string>("LNameKata")
+                    b.Property<string>("NameKata")
                         .IsRequired();
 
                     b.Property<string>("Phone");

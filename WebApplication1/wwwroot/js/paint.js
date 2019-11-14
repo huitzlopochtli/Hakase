@@ -21,7 +21,6 @@ function preload() {
 }
 
 function setup() {
-    disableScroll();
     var canvas = createCanvas(1366, 705);
     canvas.parent('paint');
     noStroke();
@@ -114,7 +113,8 @@ function mousePressed() {
         mouseX <= buttonX + 70 &&
         mouseY >= buttonY &&
         mouseY <= buttonY + 70) {
-            mode = MODES.PANnZOOM;
+        mode = MODES.PANnZOOM;
+        disableScroll();
     }
 }
 
@@ -153,8 +153,6 @@ function mouseWheel(event) {
             }
         }
     }
-
-    
 
 }
 

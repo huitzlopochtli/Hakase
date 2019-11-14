@@ -24,10 +24,19 @@
     <thead>
         <tr>
             <th>
-                名前
+                @Html.DisplayNameFor(model => model.NameHira)
             </th>
             <th>
-                名前(カタ)
+                @Html.DisplayNameFor(model => model.NameKata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyNameHira)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyNameKata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyEmail)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Phone)
@@ -59,44 +68,51 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FNameHira)
-                    @Html.DisplayFor(modelItem => item.LNameHira)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FNameKata)
-                    @Html.DisplayFor(modelItem => item.LNameKata)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneMobile)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateOfBirth)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserCreated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateModified)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserModified)
-                </td>
-                <td>
-                    <a asp-action="CustomerEdit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="CustomerDelete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameHira)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameKata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyNameHira)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyNameKata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserModified)
+            </td>
+            <td>
+                <a asp-action="CustomerEdit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="CustomerDelete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

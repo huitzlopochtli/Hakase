@@ -42,10 +42,11 @@ namespace WebApplication1.Data
                     userManager.AddToRoleAsync(user, "Customer").Wait();
                     context.Customers.Add(new Customer()
                     {
-                        FNameHira = "佐助",
-                        LNameKata = "内は",
-                        FNameKata = "サスケ",
-                        LNameHira = "ウチハ",
+                        NameHira = "佐助 内は",
+                        NameKata = "サスケ ウチハ",
+                        CompanyNameHira = "木の葉",
+                        CompanyEmail = "cccc@hakase.com",
+                        CompanyNameKata = "コノハ",
                         Phone = "093847893",
                         DateOfBirth = DateTime.Now,
                         Address = "〒103-0011 東京都中央区日本橋大伝馬町１１−８ ＨＡＴビル 3F ERAS株式会社",
@@ -70,10 +71,12 @@ namespace WebApplication1.Data
                     userManager.AddToRoleAsync(user, "Customer").Wait();
                     context.Customers.Add(new Customer()
                     {
-                        FNameHira = "鳴門",
-                        LNameKata = "うじゅ巻き",
-                        FNameKata = "ナルト",
-                        LNameHira = "ウジュマキ",
+                        NameHira = "鳴門 うじゅ巻き",
+                        NameKata = "ナルト ウジュマキ",
+
+                        CompanyNameHira = "木の葉",
+                        CompanyEmail = "cccc@hakase.com",
+                        CompanyNameKata = "コノハ",
                         Phone = "093847893",
                         DateOfBirth = DateTime.Now,
                         Address = "〒103-0011 東京都中央区日本橋大伝馬町１１−８ ＨＡＴビル 3F ERAS株式会社",

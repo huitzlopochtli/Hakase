@@ -9,23 +9,26 @@ namespace WebApplication1.Models
     public class Customer : BaseEntity
     {
         [Required]
-        [DisplayName("名（メイ)")]
-        public string FNameHira { get; set; }
+        [DisplayName("名前　ふり")]
+        public string NameHira { get; set; }
 
         [Required]
-        [DisplayName("姓（セイ)")]
-        public string LNameHira { get; set; }
-
+        [DisplayName("名前　カタ")]
+        public string NameKata { get; set; }
         [Required]
-        [DisplayName("メイ")]
-        public string FNameKata { get; set; }
-
+        [DisplayName("会社の名前")]
+        public string CompanyNameHira { get; set; }
         [Required]
-        [DisplayName("セイ")]
-        public string LNameKata { get; set; }
+        [DisplayName("会社の名前 カタ")]
+        public string CompanyNameKata { get; set; }
+        [Required]
+        [DisplayName("会社のメール")]
+        public string CompanyEmail { get; set; }
+
 
         [DisplayName("電話番号")]
         public string Phone { get; set; }
+
 
         [DisplayName("携帯番号")]
         public string PhoneMobile { get; set; }
@@ -43,12 +46,13 @@ namespace WebApplication1.Models
 
         public Customer(){ }
 
-        public Customer(string fNameHira, string lNameHira, string fNameKata, string lNameKata, string phone, string phoneMobile, DateTime? dateOfBirth, string address, IdentityUser user, string userId)
+        public Customer(string nameHira, string nameKata, string companyNameHira, string companyNameKata, string companyEmail, string phone, string phoneMobile, DateTime? dateOfBirth, string address, IdentityUser user, string userId)
         {
-            FNameHira = fNameHira;
-            LNameHira = lNameHira;
-            FNameKata = fNameKata;
-            LNameKata = lNameKata;
+            NameHira = nameHira;
+            NameKata = nameKata;
+            CompanyNameHira = companyNameHira;
+            CompanyNameKata = companyNameKata;
+            CompanyEmail = companyEmail;
             Phone = phone;
             PhoneMobile = phoneMobile;
             DateOfBirth = dateOfBirth;

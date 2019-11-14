@@ -7,7 +7,7 @@
 
 <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})" method="post" id="logoutForm" class="navbar-right">
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" style=" margin-top: 15px;">
         <li><a asp-area="" asp-controller="Paint" asp-action="Edit" class="navbar-brand right">リフォーム</a></li>
 
         @if (SignInManager.IsSignedIn(User))
@@ -28,7 +28,7 @@
                 }
             }
             <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">こんにちは @UserManager.GetUserName(User)!</a>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">こんにちは、 @UserManager.GetUserName(User)!</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">ログアウト</button>
