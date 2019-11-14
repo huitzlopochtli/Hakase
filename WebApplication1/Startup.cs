@@ -23,17 +23,7 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
 
-            services.AddSession(options =>
-            {
-                options.Cookie.Name = ".AdventureWorks.Session";
-
-                options.IdleTimeout = TimeSpan.FromSeconds(99999999);
-                options.Cookie.HttpOnly = true;
-                // Make the session cookie essential
-                options.Cookie.IsEssential = true;
-            });
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -64,12 +54,25 @@ namespace WebApplication1
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddDistributedMemoryCache();
+            services.AddMemoryCache();
+            services.AddHttpContextAccessor();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".AdventureWorks.Session";
+
+                options.IdleTimeout = TimeSpan.FromDays(365);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddMvc()
                 //.AddRazorPagesOptions(options =>
                 //{
                 //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
                 //})
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
 
         }
 
@@ -102,7 +105,7 @@ namespace WebApplication1
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-           ApplicationDbInitializer.SeedUsers(userManager, context);
+            ApplicationDbInitializer.SeedUsers(userManager, context);
         }
     }
 }

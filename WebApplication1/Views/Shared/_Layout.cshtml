@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,7 +13,7 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" />
 
 </head>
-<body>
+<body style="margin:0px;padding:0px;overflow:hidden">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -33,6 +34,11 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         @RenderBody()
         <hr />
         <footer>
