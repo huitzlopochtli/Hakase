@@ -17,26 +17,27 @@
                 if (Helper.UserRole.Equals("Admin"))
                 {
                     <li>
-                        <a asp-controller="Admin" asp-action="Index">Admin</a>
+                        <a asp-controller="Admin" asp-action="Index">管理者パネル</a>
                     </li>
                 }
                 else if (Helper.UserRole.Equals("Customer"))
                 {
                     <li>
-                        <a asp-controller="Admin" asp-action="Index">Customer</a>
+                        <a asp-controller="Admin" asp-action="Index">お客様パネル</a>
                     </li>
                 }
             }
             <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">こんにちは @UserManager.GetUserName(User)!</a>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">ログアウト</button>
             </li>
         }
         else
         {
-            <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Login">
+                ログインする</a></li>
         }
     </ul>
 </form>
