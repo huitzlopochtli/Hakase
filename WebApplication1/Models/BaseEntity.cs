@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,12 +12,13 @@ namespace WebApplication1.Models
         [Key]
         public int Id { get; set; }
 
+        [DisplayName("作成日")]
         public DateTime? DateCreated { get; set; }
-
+        [DisplayName("ユーザークリエット")]
         public string UserCreated { get; set; }
-
+        [DisplayName("変更日")]
         public DateTime? DateModified { get; set; }
-
+        [DisplayName("ユーザーモディファイ")]
         public string UserModified { get; set; }
     }
 }

@@ -27,5 +27,15 @@ namespace WebApplication1.Controllers
             ViewBag.UserCount = _userManager.Users.Count();
             return View();
         }
+
+        public IActionResult UserPage()
+        {
+            return View();
+        }
+
+        public IActionResult CustomerPage()
+        {
+            return View(_context.Customers);
+        }
     }
 }
