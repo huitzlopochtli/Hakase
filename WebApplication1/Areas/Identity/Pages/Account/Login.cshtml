@@ -2,25 +2,23 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "ログインする";
 }
-
-<h2>@ViewData["Title"]</h2>
 
 <div class="row">
     <div class="col-sm-4 col-sm-offset-8">
         <section>
             <form method="post">
-                <h4>Use a local account to log in.</h4>
+                <h4>博士.comのアカウントを使用してログインします。</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Input.Email"></label>
+                    <label asp-for="Input.Email">メール</label>
                     <input asp-for="Input.Email" class="form-control" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Password"></label>
+                    <label asp-for="Input.Password">パスワード</label>
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>

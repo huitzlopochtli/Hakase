@@ -15,7 +15,7 @@
 </head>
 <body style="margin:0px;padding:0px;overflow:hidden">
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container" style="height: 80px;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -23,7 +23,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">博士.com</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <img src="~/images/hakase_logo.png" />
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <partial name="_LoginPartial" />
@@ -37,8 +39,16 @@
         <br />
         <br />
         <br />
+        <br />
+        <br />
         @RenderBody()
         <hr />
+        <footer>
+            <a asp-controller="Home" asp-action="Index">ホーム</a>  。
+            <a asp-controller="Home" asp-action="About">アバウト</a>  。
+            <a asp-controller="Home" asp-action="Contact">接触</a>
+            <p>&copy; 2019 - 博士.com</p>
+        </footer>
     </div>
 
 
