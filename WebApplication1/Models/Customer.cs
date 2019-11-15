@@ -8,20 +8,20 @@ namespace WebApplication1.Models
 {
     public class Customer : BaseEntity
     {
-        [Required]
+        [Required(ErrorMessage = "名前(ふり)項目は必須です。")]
         [DisplayName("名前(ふり)")]
         public string NameHira { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "名前(カタ)項目は必須です。")]
         [DisplayName("名前(カタ)")]
         public string NameKata { get; set; }
-        [Required]
+        [Required(ErrorMessage = "会社の名前(ふり)項目は必須です。")]
         [DisplayName("会社の名前(ふり)")]
         public string CompanyNameHira { get; set; }
-        [Required]
+        [Required(ErrorMessage = "会社の名前(カタ)項目は必須です。")]
         [DisplayName("会社の名前(カタ)")]
         public string CompanyNameKata { get; set; }
-        [Required]
+        [Required(ErrorMessage = "会社の名前(カタ)項目は必須です。")]
         [DisplayName("会社のメール")]
         public string CompanyEmail { get; set; }
 

@@ -50,6 +50,7 @@ namespace WebApplication1
                         options.Password.RequiredLength = 4;
                         options.Password.RequireUppercase = false;
                     })
+                .AddErrorDescriber<JapaneseErrorDescriber>()
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
