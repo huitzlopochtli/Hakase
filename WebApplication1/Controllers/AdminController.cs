@@ -117,6 +117,36 @@ namespace WebApplication1.Controllers
         {
             return _context.Customers.Any(e => e.Id == id);
         }
+
+        // GET: Customers/Delete/5
+        public async Task<IActionResult> CustomerDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var customer = await _context.Customers
+                .Include(c => c.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return View(customer);
+        }
+
+        // POST: Customers/Delete/5
+        [HttpPost, ActionName("CustomerDelete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var customer = await _context.Customers.FindAsync(id);
+            _context.Customers.Remove(customer);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(CustomerPage));
+        }
     }
     public class DUser
     {
