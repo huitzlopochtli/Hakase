@@ -30,12 +30,12 @@ body {
 
 /* Hide/rearrange for smaller screens */
 /*@media screen and (max-width: 767px) {*/
-    /* Hide captions */
-    /*.carousel-caption {
+/* Hide captions */
+/*.carousel-caption {
         display: none;
     }
 }*/
 
 body {
-    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic";
+    font-family: font-family: 'Sawarabi Mincho', sans-serif;
 }
