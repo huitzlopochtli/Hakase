@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using WebApplication1.Views;
 
 namespace WebApplication1.Areas.Identity.Pages.Account
 {
@@ -88,14 +87,12 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
                     if (roles.Any(r => r == "Admin"))
                     {
-                        Helper.UserRole = "Admin";
                         HttpContext.Session.SetString("Role", "Admin");
                         returnUrl = Url.Content("~/Admin");
                     }
 
                     else if (roles.Any(r => r == "Customer"))
                     {
-                        Helper.UserRole = "Customer";
                         HttpContext.Session.SetString("Role", "Customer");
                         returnUrl = Url.Content("~/Customer");
                     }

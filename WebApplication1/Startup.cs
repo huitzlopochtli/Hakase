@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApplication1.Views;
 
 namespace WebApplication1
 {
@@ -100,12 +99,6 @@ namespace WebApplication1
 
             app.UseSession();
 
-            app.Use((httpContext, next) =>
-            {
-                Helper.UserRole = httpContext.Session.GetString("Role");
-                // Use the variable.
-                return next();
-            });
 
             app.UseMvc(routes =>
             {

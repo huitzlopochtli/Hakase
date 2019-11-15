@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Identity
-@using WebApplication1.Views
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -12,21 +11,19 @@
 
         @if (SignInManager.IsSignedIn(User))
         {
-            if (Helper.UserRole != null)
+            if (User.IsInRole("Admin"))
             {
-                if (Helper.UserRole.Equals("Admin"))
-                {
-                    <li>
-                        <a asp-controller="Admin" asp-action="Index">管理者パネル</a>
-                    </li>
-                }
-                else if (Helper.UserRole.Equals("Customer"))
-                {
-                    <li>
-                        <a asp-controller="Admin" asp-action="Index">お客様パネル</a>
-                    </li>
-                }
+                <li>
+                    <a asp-controller="Admin" asp-action="Index">管理者パネル</a>
+                </li>
             }
+            else if (User.IsInRole("Customer"))
+            {
+                <li>
+                    <a asp-controller="Admin" asp-action="Index">お客様パネル</a>
+                </li>
+            }
+
             <li>
                 <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">こんにちは、 @UserManager.GetUserName(User)!</a>
             </li>
