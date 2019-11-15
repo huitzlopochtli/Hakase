@@ -50,7 +50,9 @@ namespace WebApplication1.Data
                         Phone = "093847893",
                         DateOfBirth = DateTime.Now,
                         Address = "〒103-0011 東京都中央区日本橋大伝馬町１１−８ ＨＡＴビル 3F ERAS株式会社",
-                        UserId = user.Id
+                        UserId = user.Id,
+                        UserCreated = "admin@hakase.com",
+                        UserModified = "admin@hakase.com"
                     });
                     context.SaveChanges();
                 }
@@ -73,14 +75,15 @@ namespace WebApplication1.Data
                     {
                         NameHira = "鳴門 うじゅ巻き",
                         NameKata = "ナルト ウジュマキ",
-
                         CompanyNameHira = "木の葉",
                         CompanyEmail = "cccc@hakase.com",
                         CompanyNameKata = "コノハ",
                         Phone = "093847893",
                         DateOfBirth = DateTime.Now,
                         Address = "〒103-0011 東京都中央区日本橋大伝馬町１１−８ ＨＡＴビル 3F ERAS株式会社",
-                        UserId = user.Id
+                        UserId = user.Id,
+                        UserCreated = "admin@hakase.com",
+                        UserModified = "admin@hakase.com"
                     });
                     context.SaveChanges();
                 }

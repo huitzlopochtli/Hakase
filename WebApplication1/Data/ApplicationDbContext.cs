@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -27,14 +29,14 @@ namespace WebApplication1.Data
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             AddTimestamps();
-            return await base.SaveChangesAsync();
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         private void AddTimestamps()
         {
             var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
-            var currentUsername = "";
+            var currentUsername = Thread.CurrentPrincipal.Identity.Name;
 
             foreach (var entity in entities)
             {

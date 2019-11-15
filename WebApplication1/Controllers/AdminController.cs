@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -32,7 +35,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> UserPage()
         {
             var users = _userManager.Users;
-            List < DUser > dUsers= new List<DUser>();
+            List<DUser> dUsers = new List<DUser>();
             foreach (var user in users)
             {
                 var roles = await _userManager.GetRolesAsync(user);
@@ -54,6 +57,63 @@ namespace WebApplication1.Controllers
         public IActionResult CustomerPage()
         {
             return View(_context.Customers);
+        }
+
+        public async Task<IActionResult> CustomerEdit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var customer = await _context.Customers.FindAsync(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.UserEmail = await _userManager.Users.Where(u => u.Id == customer.UserId).FirstOrDefaultAsync();
+            return View(customer);
+        }
+
+        // POST: Customers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CustomerEdit(int id, Customer customer)
+        {
+            if (id != customer.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(customer);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CustomerExists(customer.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", customer.UserId);
+            return View(customer);
+        }
+        private bool CustomerExists(int id)
+        {
+            return _context.Customers.Any(e => e.Id == id);
         }
     }
     public class DUser
