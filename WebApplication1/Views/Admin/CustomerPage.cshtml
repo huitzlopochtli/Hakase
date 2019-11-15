@@ -75,52 +75,52 @@
                     @{
                         count += 1;
                         <p>@count.ToString()</p>
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NameHira)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NameKata)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyNameHira)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyNameKata)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneMobile)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserModified)
-            </td>
-            <td>
-                <a asp-action="CustomerEdit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="CustomerDelete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-    }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameHira)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameKata)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyNameHira)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyNameKata)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneMobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateModified)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserModified)
+                </td>
+                <td>
+                    <a asp-action="CustomerEdit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="CustomerDelete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

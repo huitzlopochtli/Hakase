@@ -15,9 +15,12 @@ namespace WebApplication1.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        private readonly IHttpContextAccessor _httpContext;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHttpContextAccessor httpContext)
             : base(options)
         {
+            _httpContext = httpContext;
         }
 
         public override int SaveChanges()
@@ -36,7 +39,7 @@ namespace WebApplication1.Data
         {
             var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
-            var currentUsername = Thread.CurrentPrincipal.Identity.Name;
+            var currentUsername = _httpContext.HttpContext.User.Identity.Name;
 
             foreach (var entity in entities)
             {

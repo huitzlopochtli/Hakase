@@ -56,7 +56,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult CustomerPage()
         {
-            return View(_context.Customers);
+            return View(_context.Customers.OrderByDescending(c => c.DateCreated));
         }
 
         public async Task<IActionResult> CustomerEdit(int? id)
@@ -106,7 +106,9 @@ namespace WebApplication1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                TempData["Success"] = $"更新しました。";
+                return RedirectToAction(nameof(CustomerPage));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", customer.UserId);
             return View(customer);
