@@ -35,14 +35,6 @@ namespace WebApplication1
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddDefaultIdentity<IdentityUser>(options =>
-            //    {
-            //        options.Password.RequireDigit = false;
-            //        options.Password.RequiredLength = 4;
-            //        options.Password.RequireUppercase = false;
-            //    }).AddRoles<IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
                     {
                         options.Password.RequireDigit = false;
@@ -78,7 +70,7 @@ namespace WebApplication1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager, ApplicationDbContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -107,7 +99,6 @@ namespace WebApplication1
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            ApplicationDbInitializer.SeedUsers(userManager, context);
             
         }
     }
