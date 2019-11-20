@@ -1,9 +1,12 @@
-﻿@model IEnumerable<WebApplication1.Models.Customer>
+﻿@model IEnumerable<WebApplication1.Models.Material>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link rel="stylesheet" href="~/lib/AdminLTE/adminlte.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css" />
 
 <a asp-controller="Admin" asp-action="Index">← 戻る</a>
 <br />
@@ -20,34 +23,14 @@
 
 
 <table class="table table-striped table-bordered" style="width: 100%" id="customerTable">
+
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NameHira)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NameKata)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompanyNameHira)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompanyNameKata)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompanyEmail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneMobile)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.User)
@@ -72,31 +55,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NameHira)
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NameKata)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyNameHira)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyNameKata)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyEmail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneMobile)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateOfBirth)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
+                    <img src="@item.ImageUrl" style="max-height: 40px; max-width: 40px"/>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.User.Id)

@@ -1,0 +1,64 @@
+﻿@model WebApplication1.Models.Material
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/AdminLTE/adminlte.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css" />
+
+<a asp-controller="Materials" asp-action="Index">← 戻る</a>
+<br />
+<br />
+<div class="info-box">
+    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+    <div class="info-box-content">
+        <span class="info-box-text"><h1>お客様</h1></span>
+
+        <h2>
+            @Html.DisplayNameFor(model => model.Name): 
+            @Html.DisplayFor(model => model.Name)
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="">
+        <img src="@Model.ImageUrl" style="min-width: 300px; min-height: 300px; max-width: 300px; min-height: 300px;"/>
+    </div>
+    <dl class="dl-horizontal right">
+        <dt>
+            作成者
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserModified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserModified)
+        </dd>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <dt><button><a asp-controller="Materials" asp-action="Edit" asp-route-id="@Model.Id">編集する</a></dt></button>
+        <dd><button><a asp-controller="Materials" asp-action="Delete" asp-route-id="@Model.Id">削除する</a></dd></button>
+    </dl>
+</div>

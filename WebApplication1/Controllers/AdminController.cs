@@ -27,6 +27,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.MaterialCount = !_context.Materials.Any() ? 0 : _context.Materials.Count();
             ViewBag.CustomerCount = _context.Customers.Count();
             ViewBag.UserCount = _userManager.Users.Count();
             return View();

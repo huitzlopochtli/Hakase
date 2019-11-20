@@ -57,10 +57,10 @@ namespace WebApplication1.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            //builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
-            //builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Customer", NormalizedName = "Customer".ToUpper() });
         }
 
         public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Material> Materials { get; set; }
     }
 }

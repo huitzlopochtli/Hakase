@@ -9,8 +9,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191115080346_CustomerMod")]
-    partial class CustomerMod
+    [Migration("20191120015123_addedall")]
+    partial class addedall
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,11 +40,6 @@ namespace WebApplication1.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new { Id = "fc83b5c4-fc27-4722-883f-d349326adb2b", ConcurrencyStamp = "7c18914f-004d-4520-8081-e01e47ebdb29", Name = "Admin", NormalizedName = "ADMIN" },
-                        new { Id = "dad00ffb-457a-4cd4-aa04-d6b9e951c68a", ConcurrencyStamp = "37f13de1-31e9-450b-bf79-7eefcf12fc5c", Name = "Customer", NormalizedName = "CUSTOMER" }
-                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -226,6 +221,34 @@ namespace WebApplication1.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.Material", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("UserCreated");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("UserModified");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Materials");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -272,6 +295,13 @@ namespace WebApplication1.Migrations
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Customer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Material", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()

@@ -15,6 +15,8 @@ namespace WebApplication1
 {
     public class Startup
     {
+
+        public static int Progress;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -67,6 +69,7 @@ namespace WebApplication1
                 //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
                 //})
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.KnownProxies.Add(IPAddress.Parse("153.127.8.143"));

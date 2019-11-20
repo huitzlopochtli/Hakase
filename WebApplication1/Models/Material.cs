@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace WebApplication1.Models
 {
     public class Material : BaseEntity
     {
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = "の名前が必要です。")]
+        [DisplayName("素材")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = "画像のURLが必要です。")]
+        [DisplayName("画像のURL")]
         public string ImageUrl { get; set; }
 
         public IdentityUser User { get; set; }

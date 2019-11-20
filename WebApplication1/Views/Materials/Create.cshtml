@@ -1,0 +1,112 @@
+﻿@model WebApplication1.Models.Material
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+
+    .progress {
+        background: #f0f0f0;
+        margin-top: 30px;
+        display: none;
+        position: relative;
+    }
+
+        .progress .bar {
+            background: green;
+            width: 33%;
+            height: 30px;
+        }
+
+        .progress .label {
+            line-height: 30px;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 30px;
+        }
+</style>
+
+<link rel="stylesheet" href="~/lib/AdminLTE/adminlte.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css" />
+
+<a asp-controller="Materials" asp-action="Index">← 戻る</a>
+<br />
+<br />
+<div class="info-box">
+    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+    <div class="info-box-content">
+        <span class="info-box-text"><h1>お客様</h1></span>
+
+        <h2>ファイルをドラッグアンドドロップするか、[画像を追加]を選択します。</h2>
+
+    </div>
+</div>
+
+<form id="form" name="form" asp-controller="Materials" asp-action="Create" enctype="multipart/form-data" method="post">
+    <div class="buttons">
+        <div class="upload-button">
+            <div class="label">ファイルをドラッグアンドドロップするか、[画像を追加]を選択します。</div>
+            <input id="files" name="files" type="file" size="1" multiple onchange="uploadFiles('files');" />
+        </div>
+    </div>
+</form>
+<div id="progress" class="progress"><div id="bar" class="bar"></div><div id="label" class="label">0%</div></div>
+
+<script>
+    function uploadFiles(inputId) {
+        var input = document.getElementById(inputId);
+        var files = input.files;
+        var formData = new FormData();
+
+        for (var i = 0; i != files.length; i++) {
+            formData.append("files", files[i]);
+        }
+
+        startUpdatingProgressIndicator();
+        $.ajax(
+            {
+                url: "/uploader/index",
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: "POST",
+                success: function (data) {
+                    stopUpdatingProgressIndicator();
+                    alert("Files Uploaded!");
+                }
+            }
+        );
+    }
+
+    var intervalId;
+
+    function startUpdatingProgressIndicator() {
+        $("#progress").show();
+
+        intervalId = setInterval(
+            function () {
+                // We use the POST requests here to avoid caching problems (we could use the GET requests and disable the cache instead)
+                $.post(
+                    "/uploader/progress",
+                    function (progress) {
+                        $("#bar").css({ width: progress + "%" });
+                        $("#label").html(progress + "%");
+                    }
+                );
+            },
+            10
+        );
+    }
+
+    function stopUpdatingProgressIndicator() {
+        clearInterval(intervalId);
+    }
+</script>
+
