@@ -53,7 +53,7 @@ namespace WebApplication1.Data
                 ((BaseEntity)entity.Entity).UserModified = currentUsername;
             }
         }
-
+          
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -62,5 +62,9 @@ namespace WebApplication1.Data
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Material> Materials { get; set; }
+
+        public DbSet<UploadedImage> UploadedImages { get; set; }
+
+        public DbSet<ReformedImage> ReformedImages { get; set; }
     }
 }

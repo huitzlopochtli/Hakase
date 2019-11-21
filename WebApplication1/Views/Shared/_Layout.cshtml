@@ -21,67 +21,71 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" />
 </head>
 <body style="margin: 0px; padding: 0px; overflow: visible;">
-<nav class="navbar navbar-inverse navbar-fixed-top" style=" font-size: 1em;">
-    <div class="container" style="overflow: visible">
-        <div class="navbar-header" style="height: 80px;">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin-top: 20px;">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                <img src="~/images/hakase_logo.png"/>
-            </a>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style=" font-size: 1em;">
+        <div class="container" style="overflow: visible">
+            <div class="navbar-header" style="height: 80px;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin-top: 20px;">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <img src="~/images/hakase_logo.png" />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <partial name="_LoginPartial" />
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <partial name="_LoginPartial"/>
-        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container">
+        <br />
+        <br />
+        <br />
+        <br />
+        <hr />
+        @RenderBody()
+        <hr />
+        <footer>
+            <a asp-controller="Home" asp-action="Index">ホーム</a> 。
+            <a asp-controller="Home" asp-action="About">アバウト</a> 。
+            <a asp-controller="Home" asp-action="Contact">接触</a>
+            <p>&copy; 2019 - 博士.com</p>
+        </footer>
     </div>
-</nav>
 
-<partial name="_CookieConsentPartial"/>
-
-<div class="container">
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <hr/>
-    @RenderBody()
-    <hr/>
-    <footer>
-        <a asp-controller="Home" asp-action="Index">ホーム</a> 。
-        <a asp-controller="Home" asp-action="About">アバウト</a> 。
-        <a asp-controller="Home" asp-action="Contact">接触</a>
-        <p>&copy; 2019 - 博士.com</p>
-    </footer>
-</div>
-
-<environment include="Development">
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-</environment>
-<environment exclude="Development">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-            asp-fallback-test="window.jQuery"
-            crossorigin="anonymous"
-            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $('#paintFileUpload').on('change', (function () {
+            $(this).closest('form').submit();
+        }));
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-            crossorigin="anonymous"
-            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
-    </script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
-</environment>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 
-
-@RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

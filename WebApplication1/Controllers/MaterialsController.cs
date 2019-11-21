@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
         // GET: Materials
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Materials.Include(m => m.User);
+            var applicationDbContext = _context.Materials.Include(m => m.User).OrderByDescending(m => m.DateCreated).ThenByDescending(m => m.DateCreated);
             return View(await applicationDbContext.ToListAsync());
         }
 

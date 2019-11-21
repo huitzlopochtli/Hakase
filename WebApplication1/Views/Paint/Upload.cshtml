@@ -1,0 +1,163 @@
+﻿@model WebApplication1.ViewModels.UploadReformListViewModel
+@{
+    ViewData["Title"] = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    bool isAdmin = Context.User.IsInRole("Admin");
+}
+
+<div class="container">
+    <form asp-controller="Paint" asp-action="Upload" enctype="multipart/form-data" class="form-group">
+        <label class="control-label"> 壁または床の写真をアップロードします。</label>
+        <input type="file" id="paintFileUpload" name="source" class="form-control" placeholder="this is a test"/>
+    </form>
+    <br />
+    @if (Context.User.Identity.IsAuthenticated)
+    {
+        <table class="table table-striped table-bordered" style="width: 100%" id="customerTable2">
+            <thead>
+                <tr>
+                    <th>
+                        画像
+                    </th>
+                    @if (isAdmin)
+                    {
+                        <th>
+                            画像のURL
+                        </th>
+                    }
+                    <th>
+                        作成日
+                    </th>
+                    @if (isAdmin)
+                    {
+
+                        <th>
+                            作成者
+                        </th>
+
+                        <th>
+                            変更日
+                        </th>
+                        <th>
+                            編集者
+                        </th>
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.UploadedImages)
+                {
+                    <tr>
+                        <th>
+                            <img src="@item.ImageUrl" style="max-height: 40px; max-width: 40px" />
+                        </th>
+                        @if (isAdmin)
+                        {
+
+                            <th>
+                                @item.ImageUrl
+                            </th>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        @if (isAdmin)
+                        {
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserCreated)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateModified)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserModified)
+                            </td>
+                        }
+                        <td>
+                            <a asp-controller="Paint" asp-action="Edit" asp-route-imgUrl="@item.ImageUrl">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <table class="table table-striped table-bordered" style="width: 100%" id="customerTable">
+            <thead>
+                <tr>
+                    <th>
+                        画像名
+                    </th>
+                    <th>
+                        画像
+                    </th>
+                    <th>
+                        元画像
+                    </th>
+                    <th>
+                        画像のURL
+                    </th>
+                    <th>
+                        作成日
+                    </th>
+                    <th>
+                        作成者
+                    </th>
+                    <th>
+                        変更日
+                    </th>
+                    <th>
+                        編集者
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ReformedImages)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <img src="@item.UploadedImage.ImageUrl" style="max-height: 40px; max-width: 40px" />
+                        </td>
+                        <td>
+                            <img src="@item.ImageUrl" style="max-height: 40px; max-width: 40px" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImageUrl)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateModified)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserModified)
+                        </td>
+                        <td>
+                            <a asp-controller="Paint" asp-action="Edit" asp-route-id="@item.ImageUrl">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>
+
+
+

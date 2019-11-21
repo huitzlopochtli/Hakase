@@ -7,6 +7,7 @@ var mode;
 var buttonX = 270;
 var buttonY = 625;
 var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+var urlParams = new URLSearchParams(window.location.search);
 
 
 // Different Modes
@@ -17,7 +18,8 @@ var MODES = {
 };
 
 function preload() {
-    img = loadImage("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQwH5Lx5XoR5ab2pJwnA1iYyg1MRnjc4jctSQM391IAUp0Pd-ve");
+    console.log(urlParams.get('imgUrl').replace(/\\/g, "/"));
+    img = loadImage(urlParams.get('imgUrl').replace(/\\/g, "/"));
 }
 
 function setup() {
@@ -86,7 +88,7 @@ function draw() {
 
 
     //Button 
-    
+
     Button(buttonX, buttonY, "Pan & Zoom");
     Button(buttonX + 80, buttonY, "Remove Object");
     Button(buttonX + 160, buttonY, "Wallpaper");

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication1.Migrations
 {
-    public partial class addedall : Migration
+    public partial class ImageReform : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,23 @@ namespace WebApplication1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UploadedImages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    DateCreated = table.Column<DateTime>(nullable: true),
+                    UserCreated = table.Column<string>(nullable: true),
+                    DateModified = table.Column<DateTime>(nullable: true),
+                    UserModified = table.Column<string>(nullable: true),
+                    ImageUrl = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UploadedImages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,6 +227,30 @@ namespace WebApplication1.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ReformedImages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    DateCreated = table.Column<DateTime>(nullable: true),
+                    UserCreated = table.Column<string>(nullable: true),
+                    DateModified = table.Column<DateTime>(nullable: true),
+                    UserModified = table.Column<string>(nullable: true),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    UploadedImageId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReformedImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ReformedImages_UploadedImages_UploadedImageId",
+                        column: x => x.UploadedImageId,
+                        principalTable: "UploadedImages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -256,6 +297,11 @@ namespace WebApplication1.Migrations
                 name: "IX_Materials_UserId",
                 table: "Materials",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReformedImages_UploadedImageId",
+                table: "ReformedImages",
+                column: "UploadedImageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -282,10 +328,16 @@ namespace WebApplication1.Migrations
                 name: "Materials");
 
             migrationBuilder.DropTable(
+                name: "ReformedImages");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "UploadedImages");
         }
     }
 }

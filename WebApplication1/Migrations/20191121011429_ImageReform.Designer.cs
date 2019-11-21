@@ -9,8 +9,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191120015123_addedall")]
-    partial class addedall
+    [Migration("20191121011429_ImageReform")]
+    partial class ImageReform
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -249,6 +249,50 @@ namespace WebApplication1.Migrations
                     b.ToTable("Materials");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.ReformedImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<int>("UploadedImageId");
+
+                    b.Property<string>("UserCreated");
+
+                    b.Property<string>("UserModified");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UploadedImageId");
+
+                    b.ToTable("ReformedImages");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.UploadedImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<string>("UserCreated");
+
+                    b.Property<string>("UserModified");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UploadedImages");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -306,6 +350,14 @@ namespace WebApplication1.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.ReformedImage", b =>
+                {
+                    b.HasOne("WebApplication1.Models.UploadedImage", "UploadedImage")
+                        .WithMany("ReformedImages")
+                        .HasForeignKey("UploadedImageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
