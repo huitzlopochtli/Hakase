@@ -20,10 +20,11 @@ namespace WebApplication1
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                //.UseKestrel(options => {
-                //    options.Listen(IPAddress.Loopback, 5000); //HTTP port
-                //})
-                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseKestrel(options =>
+                {
+                    options.Listen(IPAddress.Loopback, 5000); //HTTP port
+                })
+                //.UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>();
     }
 }

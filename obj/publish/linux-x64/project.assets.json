@@ -16729,11 +16729,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hashibulkhondokar\\source\\repos\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "Y:\\Storage\\Codes\\C#\\Hakase\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\hashibulkhondokar\\source\\repos\\WebApplication1\\WebApplication1.csproj",
+      "projectPath": "Y:\\Storage\\Codes\\C#\\Hakase\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\hashibulkhondokar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hashibulkhondokar\\source\\repos\\WebApplication1\\obj\\publish\\linux-x64\\",
+      "outputPath": "Y:\\Storage\\Codes\\C#\\Hakase\\obj\\publish\\linux-x64\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

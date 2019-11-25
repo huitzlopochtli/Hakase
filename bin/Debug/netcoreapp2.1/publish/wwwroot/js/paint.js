@@ -89,7 +89,7 @@ function draw() {
 
     //Button 
 
-    Button(buttonX, buttonY, "Pan & Zoom");
+    //Button(buttonX, buttonY, "Angle");
     Button(buttonX + 80, buttonY, "Remove Object");
     Button(buttonX + 160, buttonY, "Wallpaper");
     Button(buttonX + 240, buttonY, "Floor");
@@ -118,66 +118,74 @@ function mousePressed() {
         mode = MODES.PANnZOOM;
         disableScroll();
     }
-}
 
+    if (mouseX >= buttonX &&
+        mouseX <= buttonX + 70 &&
+        mouseY >= buttonY &&
+        mouseY <= buttonY + 70) {
 
-function mouseDragged() {
-    tox += mouseX - pmouseX;
-    toy += mouseY - pmouseY;
-}
-function mouseWheel(event) {
-
-    if (mouseX >= 0 &&
-        mouseX <= w &&
-        mouseY >= 0 &&
-        mouseY <= h) {
-
-
-        var e = -event.delta;
-
-        if (e > 0) { //zoom in
-            for (var i = 0; i < e; i++) {
-                if (tow > 30 * 995) return; //max zoom
-                tox -= zoom * (mouseX - tox);
-                toy -= zoom * (mouseY - toy);
-                tow *= zoom + 1;
-                toh *= zoom + 1;
-            }
-        }
-
-        if (e < 0) { //zoom out
-            for (var i = 0; i < -e; i++) {
-                if (tow < 995) return; //min zoom
-                tox += zoom / (zoom + 1) * (mouseX - tox);
-                toy += zoom / (zoom + 1) * (mouseY - toy);
-                toh /= zoom + 1;
-                tow /= zoom + 1;
-            }
-        }
-    }
-
-}
-
-
-// Disable Scroll
-function preventDefault(e) {
-    e = e || window.event;
-    if (e.preventDefault)
-        e.preventDefault();
-    e.returnValue = false;
-}
-function preventDefaultForScrollKeys(e) {
-    if (keys[e.keyCode]) {
-        preventDefault(e);
-        return false;
+        console.log("Wallpaper Clicked!");
     }
 }
-function disableScroll() {
-    if (window.addEventListener) // older FF
-        window.addEventListener('DOMMouseScroll', preventDefault, false);
-    document.addEventListener('wheel', preventDefault, { passive: false }); // Disable scrolling in Chrome
-    window.onwheel = preventDefault; // modern standard
-    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-    window.ontouchmove = preventDefault; // mobile
-    document.onkeydown = preventDefaultForScrollKeys;
-}
+
+
+//function mouseDragged() {
+//    tox += mouseX - pmouseX;
+//    toy += mouseY - pmouseY;
+//}
+//function mouseWheel(event) {
+
+//    if (mouseX >= 0 &&
+//        mouseX <= w &&
+//        mouseY >= 0 &&
+//        mouseY <= h) {
+
+
+//        var e = -event.delta;
+
+//        if (e > 0) { //zoom in
+//            for (var i = 0; i < e; i++) {
+//                if (tow > 30 * 995) return; //max zoom
+//                tox -= zoom * (mouseX - tox);
+//                toy -= zoom * (mouseY - toy);
+//                tow *= zoom + 1;
+//                toh *= zoom + 1;
+//            }
+//        }
+
+//        if (e < 0) { //zoom out
+//            for (var i = 0; i < -e; i++) {
+//                if (tow < 995) return; //min zoom
+//                tox += zoom / (zoom + 1) * (mouseX - tox);
+//                toy += zoom / (zoom + 1) * (mouseY - toy);
+//                toh /= zoom + 1;
+//                tow /= zoom + 1;
+//            }
+//        }
+//    }
+
+//}
+
+
+//// Disable Scroll
+//function preventDefault(e) {
+//    e = e || window.event;
+//    if (e.preventDefault)
+//        e.preventDefault();
+//    e.returnValue = false;
+//}
+//function preventDefaultForScrollKeys(e) {
+//    if (keys[e.keyCode]) {
+//        preventDefault(e);
+//        return false;
+//    }
+//}
+//function disableScroll() {
+//    if (window.addEventListener) // older FF
+//        window.addEventListener('DOMMouseScroll', preventDefault, false);
+//    document.addEventListener('wheel', preventDefault, { passive: false }); // Disable scrolling in Chrome
+//    window.onwheel = preventDefault; // modern standard
+//    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+//    window.ontouchmove = preventDefault; // mobile
+//    document.onkeydown = preventDefaultForScrollKeys;
+//}

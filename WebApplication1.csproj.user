@@ -6,6 +6,6 @@
   <PropertyGroup>
     <ActiveDebugProfile>WebApplication1</ActiveDebugProfile>
     <NameOfLastUsedPublishProfile>CustomProfile</NameOfLastUsedPublishProfile>
-    <ShowAllFiles>true</ShowAllFiles>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
 </Project>
