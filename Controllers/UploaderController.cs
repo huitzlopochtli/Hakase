@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using Type = WebApplication1.Models.Type;
 
 namespace WebApplication1.Controllers
 {
@@ -27,8 +28,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> Index(IList<IFormFile> files)
+        public async Task<IActionResult> Index(IList<IFormFile> files,Type type)
         {
             Startup.Progress = 0;
 
@@ -59,7 +59,8 @@ namespace WebApplication1.Controllers
                                 {
                                     Name = materialName,
                                     ImageUrl = "/images/materials/" + filename,
-                                    User = await _userManager.GetUserAsync(HttpContext.User)
+                                    User = await _userManager.GetUserAsync(HttpContext.User),
+                                    Type = type
                                 });
 
                                 await _context.SaveChangesAsync();

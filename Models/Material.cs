@@ -19,6 +19,10 @@ namespace WebApplication1.Models
         [DisplayName("画像のURL")]
         public string ImageUrl { get; set; }
 
+        public int Precedence { get; set; }
+
+        public Type Type { get; set; }
+
         public IdentityUser User { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
@@ -34,5 +38,10 @@ namespace WebApplication1.Models
             ImageUrl = imageUrl;
             UserId = userId;
         }
+    }
+
+    public enum Type {
+        Wall = 1,
+        Floor = 2
     }
 }

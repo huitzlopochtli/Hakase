@@ -52,8 +52,12 @@
 <form id="form" name="form" asp-controller="Materials" asp-action="Create" enctype="multipart/form-data" method="post">
     <div class="buttons">
         <div class="upload-button">
+            <select id="material-type">
+                <option value=1 selected>床</option>
+                <option value=2>壁</option>
+            </select>
             <div class="label">ファイルをドラッグアンドドロップするか、[画像を追加]を選択します。</div>
-            <input id="files" name="files" type="file" size="1" multiple onchange="uploadFiles('files');" />
+            <input id="files" name="files" type="file" size="1" multiple onchange="uploadFiles('files');"/>
         </div>
     </div>
 </form>
@@ -64,6 +68,8 @@
         var input = document.getElementById(inputId);
         var files = input.files;
         var formData = new FormData();
+        console.log($('#material-type').value);
+        formData.append("type", $('#material-type option:selected').val());
 
         for (var i = 0; i != files.length; i++) {
             formData.append("files", files[i]);
@@ -72,7 +78,7 @@
         startUpdatingProgressIndicator();
         $.ajax(
             {
-                url: "/uploader/index",
+                url: "/uploader/index/",
                 data: formData,
                 processData: false,
                 contentType: false,
