@@ -15,14 +15,15 @@ namespace WebApplication1
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).UseUrls("http://localhost:5080").Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel(options =>
                 {
-                    options.Listen(IPAddress.Loopback, 5000); //HTTP port
+                    options.Listen(IPAddress.Loopback, 5080); //HTTP port
+                    options.Limits.MaxRequestBodySize = long.MaxValue;
                 })
                 //.UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>();

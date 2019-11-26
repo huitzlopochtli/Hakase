@@ -83,10 +83,11 @@ namespace WebApplication1.Controllers
                         }
                     }
                 }
+
+
             }
 
-            ViewBag.Success = $"{Startup.Progress}個のファイルがアップロードされました。";
-            return RedirectToAction("Index", "Materials");
+            return Content("Success");
 
         }
 

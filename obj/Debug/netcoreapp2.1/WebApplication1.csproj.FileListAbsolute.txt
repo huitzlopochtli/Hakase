@@ -98,6 +98,7 @@ Y:\Storage\Codes\C#\Hakase\bin\Debug\netcoreapp2.1\WebApplication1.dll
 Y:\Storage\Codes\C#\Hakase\bin\Debug\netcoreapp2.1\WebApplication1.pdb
 Y:\Storage\Codes\C#\Hakase\bin\Debug\netcoreapp2.1\WebApplication1.Views.dll
 Y:\Storage\Codes\C#\Hakase\bin\Debug\netcoreapp2.1\WebApplication1.Views.pdb
+Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.csprojAssemblyReference.cache
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.RazorAssemblyInfo.cache
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.RazorAssemblyInfo.cs
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
@@ -177,4 +178,3 @@ Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.Views.pdb
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.dll
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.pdb
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.csproj.CopyComplete
-Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.csprojAssemblyReference.cache

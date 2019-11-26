@@ -73,7 +73,7 @@ namespace WebApplication1
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.KnownProxies.Add(IPAddress.Parse("153.127.8.143"));
-                options.KnownProxies.Add(IPAddress.Parse("127.0.0.1"));
+                //options.KnownProxies.Add(IPAddress.Parse("127.0.0.1"));
             });
 
         }
@@ -88,10 +88,10 @@ namespace WebApplication1
             }
             else
             {
-                //app.UseExceptionHandler("/Home/Error");
-                //app.UseHsts();
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+                //app.UseDeveloperExceptionPage();
+                //app.UseDatabaseErrorPage();
             }
 
             //app.UseHttpsRedirection();

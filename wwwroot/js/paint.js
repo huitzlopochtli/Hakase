@@ -1,4 +1,4 @@
-﻿var img;
+﻿var imgOrg, img, imgRender;
 var w = 995, h = 605, tow, toh;
 var x, y, tox, toy;
 var zoom = .01; //zoom step per mouse tick 
@@ -20,15 +20,25 @@ var wallPapers = [];
 var MODES = {
     PANnZOOM: { value: 0, name: "PNZ", code: "P" },
     Wallpaper: { value: 1, name: "WP", code: "W" },
-    Floor: { value: 2, name: "FL", code: "F" }
+    Floor: { value: 2, name: "FL", code: "F" },
+    RmvObj: { value: 3, name: "RO", code: "R" }
 };
 
 function preload() {
     console.log(urlParams.get('imgUrl').replace(/\\/g, "/"));
-    img = loadImage(urlParams.get('imgUrl').replace(/\\/g, "/"));
+    //img = loadImage(urlParams.get('imgUrl').replace(/\\/g, "/"));
+    //img.resize(w, h);
+    imgOrg = loadImage(urlParams.get('imgUrl'));
+    img = loadImage(urlParams.get('imgUrl'), img => {
+        img.resize(w, h);
+        imgRender = img;
+    });
 }
 
 function setup() {
+    img.loadPixels();
+    imgRender.loadPixels();
+
     var canvas = createCanvas(1366, 705);
     canvas.parent('paint');
     noStroke();
@@ -109,22 +119,86 @@ function draw() {
     //Button 
 
     //Button(buttonX, buttonY, "Angle");
-    Button(buttonX + 80, buttonY, "Remove Object");
-    Button(buttonX + 160, buttonY, "Wallpaper");
-    Button(buttonX + 240, buttonY, "Floor");
-    Button(buttonX + 320, buttonY, "Angle");
-    Button(buttonX + 400, buttonY, "Apply");
+    Button(buttonX + 80, buttonY, "Remove Object", MODES.RmvObj);
+    Button(buttonX + 160, buttonY, "Wallpaper", MODES.Wallpaper);
+    Button(buttonX + 240, buttonY, "Floor", MODES.Floor);
+    Button(buttonX + 320, buttonY, "Angle", MODES.Angle);
+    Button(buttonX + 400, buttonY, "Apply", MODES.Apply);
 
 
     //Display Wallpaper Angles
-    for (var i = 0; i < wallPapers.length; i++) {
-        wallPapers[i].display();
+    if (mode === MODES.Wallpaper)
+        for (var i = 0; i < wallPapers.length; i++) {
+            wallPapers[i].display();
+        }
+
+    // Remove Object
+    if (mode === MODES.RmvObj) {
+
+        if (mouseIsPressed && mouseX >= 0 && mouseY >= 0 && mouseX <= 995 && mouseY <= 665) {
+
+            var upperLeft = { x: mouseX - 50, y: mouseY - 50 };
+            var upperright = { x: mouseX + 50, y: mouseY - 50 };
+            var lowerLeft = { x: mouseX - 50, y: mouseY + 50 };
+            var lowerRight = { x: mouseX + 50, y: mouseY + 50 };
+
+            var index = (mouseX + mouseY * w) * 4;
+
+            var index1 = (upperLeft.x + upperLeft.y * w) * 4;
+            var index2 = (upperright.x + upperright.y * w) * 4;
+            var index3 = (lowerLeft.x + lowerLeft.y * w) * 4;
+            var index4 = (lowerRight.x + lowerRight.y * w) * 4;
+
+            console.log(
+                imgRender.pixels[index],
+                imgRender.pixels[index + 1],
+                img.pixels[index + 2]
+            );
+
+            var diff = 5;
+            var count = 0;
+
+            for (let i = index1; i < index4; i += 4) {
+                //i >= index1 + 995 * 4 * count && i <= index2 + 995 * 4 * count
+                if (true) {
+                    if (
+                        img.pixels[i + 0] >= imgRender.pixels[index + 0] - diff &&
+                        img.pixels[i + 0] <= imgRender.pixels[index + 0] + diff &&
+                        img.pixels[i + 1] >= imgRender.pixels[index + 1] - diff &&
+                        img.pixels[i + 1] <= imgRender.pixels[index + 1] + diff &&
+                        img.pixels[i + 2] >= imgRender.pixels[index + 2] - diff &&
+                        img.pixels[i + 2] <= imgRender.pixels[index + 2] + diff &&
+                        img.pixels[i + 3] >= imgRender.pixels[index + 3] &&
+                        img.pixels[i + 3] <= imgRender.pixels[index + 3]
+                    ) {
+                        img.pixels[i] = 0;
+                        img.pixels[i + 1] = 0;
+                        img.pixels[i + 2] = 0;
+                        img.pixels[i + 3] = 255;
+                    }
+                }
+
+                count++;
+            }
+
+            img.updatePixels();
+
+        }
     }
 }
 
-function Button(x, y, textStr) {
+function Button(x, y, textStr, type) {
     push();
     fill(86, 177, 222);
+    if (mode === MODES.RmvObj && type === MODES.RmvObj)
+        fill(86, 177, 0);
+    if (mode === MODES.Floor && type === MODES.Floor)
+        fill(86, 177, 0);
+    if (mode === MODES.PANnZOOM && type === MODES.PANnZOOM)
+        fill(86, 177, 0);
+    if (mode === MODES.Wallpaper && type === MODES.Wallpaper)
+        fill(86, 177, 0);
+
     rect(x, y, 70, 70, 5);
     fill(255);
     textAlign(CENTER);
@@ -336,7 +410,9 @@ function mouseReleased() {
 function mousePressed() {
     // Check mouse Pressed
 
-    //console.log(mouseX, mouseY);
+
+
+
     // Wallpaper button
     for (var i = 0; i < wallPapers.length; i++) {
         wallPapers[i].clicked();
@@ -348,15 +424,16 @@ function mousePressed() {
         mouseY >= buttonY &&
         mouseY <= buttonY + 70) {
         mode = MODES.PANnZOOM;
-        disableScroll();
     }
 
+    // Remove Obj Button
     if (mouseX >= (buttonX + 80) &&
         mouseX <= (buttonX + 80) + 70 &&
         mouseY >= buttonY &&
         mouseY <= buttonY + 70) {
-        mode = MODES.PANnZOOM;
+        mode = MODES.RmvObj;
         console.log("Remove Clicked");
+
     }
 
     if (mouseX >= (buttonX + 160) &&

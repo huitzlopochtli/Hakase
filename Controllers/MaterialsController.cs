@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
@@ -23,10 +24,12 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Materials
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber = 1, int pageSize = 5)
         {
             var applicationDbContext = _context.Materials.Include(m => m.User).OrderByDescending(m => m.DateCreated).ThenByDescending(m => m.DateCreated);
-            return View(await applicationDbContext.ToListAsync());
+            var aa = await PaginatedList<Material>.CreateAsync(applicationDbContext.AsNoTracking(), pageNumber ?? 1,
+                pageSize);
+            return View(applicationDbContext);
         }
 
         // GET: Materials/Details/5
@@ -54,7 +57,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        
+
 
         // GET: Materials/Edit/5
         public async Task<IActionResult> Edit(int? id)
