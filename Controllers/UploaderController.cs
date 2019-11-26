@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
+using ImageMagick;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -46,44 +49,71 @@ namespace WebApplication1.Controllers
 
                     string serverFilePath = this.GetPathAndFilename(filename);
 
-                    byte[] buffer = new byte[16 * 1024];
-
-                    using (FileStream output = System.IO.File.Create(serverFilePath))
+                    try
                     {
-                        using (Stream input = source.OpenReadStream())
+                        await source.CopyToAsync(new FileStream(serverFilePath, FileMode.Create));
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    finally
+                    {
+                        
+                        try
                         {
 
-                            try
+                            using (var image = new MagickImage(serverFilePath))
                             {
-                                await _context.AddAsync(new Material()
-                                {
-                                    Name = materialName,
-                                    ImageUrl = "/images/materials/" + filename,
-                                    User = await _userManager.GetUserAsync(HttpContext.User),
-                                    Type = type
-                                });
-
-                                await _context.SaveChangesAsync();
+                                image.Resize(40, 40);
+                                image.Strip();
+                                image.Quality = 100;
+                                image.Write(this.GetPathAndFilename("thumbnailUrl4" + filename));
                             }
-                            finally
+
+                            using (var image = new MagickImage(serverFilePath))
                             {
-                                long totalReadBytes = 0;
-                                int readBytes;
-
-
-
-                                while ((readBytes = input.Read(buffer, 0, buffer.Length)) > 0)
-                                {
-                                    await output.WriteAsync(buffer, 0, readBytes);
-                                    totalReadBytes += readBytes;
-                                    Startup.Progress = (int)((float)totalReadBytes / (float)totalBytes * 100.0);
-                                    //await Task.Delay(10); // It is only to make the process slower
-                                }
+                                image.Resize(995, 665);
+                                image.Strip();
+                                image.Quality = 100;
+                                image.Write(this.GetPathAndFilename("thumbnailUrl1" + filename));
                             }
+
+                            using (var image = new MagickImage(serverFilePath))
+                            {
+                                image.Resize(400, 400);
+                                image.Strip();
+                                image.Quality = 100;
+                                image.Write(this.GetPathAndFilename("thumbnailUrl2" + filename));
+                            }
+
+                            using (var image = new MagickImage(serverFilePath))
+                            {
+                                image.Resize(200, 200);
+                                image.Strip();
+                                image.Quality = 100;
+                                image.Write(this.GetPathAndFilename("thumbnailUrl3" + filename));
+                            }
+
+
+                            await _context.AddAsync(new Material()
+                            {
+                                Name = materialName,
+                                ImageUrl = "/images/materials/" + filename,
+                                ImageThumbnailUrl1 = "/images/materials/thumbnailUrl1" + filename,
+                                ImageThumbnailUrl2 = "/images/materials/thumbnailUrl2" + filename,
+                                ImageThumbnailUrl3 = "/images/materials/thumbnailUrl3" + filename,
+                                ImageThumbnailUrl4 = "/images/materials/thumbnailUrl4" + filename,
+                                User = await _userManager.GetUserAsync(HttpContext.User),
+                                Type = type
+                            });
+
+                            await _context.SaveChangesAsync();
                         }
+                        catch { }
+                        
                     }
                 }
-
 
             }
 

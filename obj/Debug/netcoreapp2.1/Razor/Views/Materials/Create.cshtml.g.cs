@@ -106,7 +106,7 @@ using WebApplication1.Models;
 ");
             EndContext();
             BeginContext(650, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8b062b61bcd34fac964739c2892b02c6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2fc0f49286ff4d47b0876dd5c282eea4", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -125,7 +125,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css\" />\r\n\r\n");
             EndContext();
             BeginContext(821, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2f30091bfb1d4d3ba7e7e98ed2e11dcb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78ac9b589baa48159f3369720335dc00", async() => {
                 BeginContext(870, 4, true);
                 WriteLiteral("← 戻る");
                 EndContext();
@@ -163,12 +163,12 @@ using WebApplication1.Models;
 ");
             EndContext();
             BeginContext(1187, 563, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f29f0d32ab224858a36b8c3b943316a1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6dbad240c1804ad789e1a27b10430fc4", async() => {
                 BeginContext(1306, 123, true);
                 WriteLiteral("\r\n    <div class=\"buttons\">\r\n        <div class=\"upload-button\">\r\n            <select id=\"material-type\">\r\n                ");
                 EndContext();
                 BeginContext(1429, 35, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7d9dfa5cf50b42fd802fec50cc7befe1", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9141911d0dcc4107a66a8a70309e0cb8", async() => {
                     BeginContext(1454, 1, true);
                     WriteLiteral("床");
                     EndContext();
@@ -193,7 +193,7 @@ using WebApplication1.Models;
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(1482, 26, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b723de5c9cf74277a76e2c2f30e7e58f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3645192a907149e9a833bc812885fd44", async() => {
                     BeginContext(1498, 1, true);
                     WriteLiteral("壁");
                     EndContext();

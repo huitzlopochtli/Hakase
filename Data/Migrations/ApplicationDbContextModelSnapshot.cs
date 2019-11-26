@@ -228,6 +228,14 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<DateTime?>("DateModified");
 
+                    b.Property<string>("ImageThumbnailUrl1");
+
+                    b.Property<string>("ImageThumbnailUrl2");
+
+                    b.Property<string>("ImageThumbnailUrl3");
+
+                    b.Property<string>("ImageThumbnailUrl4");
+
                     b.Property<string>("ImageUrl")
                         .IsRequired();
 

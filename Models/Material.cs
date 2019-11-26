@@ -19,6 +19,16 @@ namespace WebApplication1.Models
         [DisplayName("画像のURL")]
         public string ImageUrl { get; set; }
 
+        // 995 x 665
+        public string ImageThumbnailUrl1 { get; set; }
+        // 400 x 400
+        public string ImageThumbnailUrl2 { get; set; }
+        // 200 x 200
+        public string ImageThumbnailUrl3 { get; set; }
+        // 40 x 40
+        public string ImageThumbnailUrl4 { get; set; }
+
+
         public int Precedence { get; set; }
 
         public Type Type { get; set; }
