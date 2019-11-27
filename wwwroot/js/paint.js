@@ -10,9 +10,11 @@ var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 var urlParams = new URLSearchParams(window.location.search);
 var wallPapers = [];
 
+var wallPaperClicked;
+var wallAngleClicked;
+
 
 var wallPapersImages = [];
-var wallPaperNumber = 1;
 
 // Different Modes
 var MODES = {
@@ -116,24 +118,30 @@ function draw() {
     // Nav
     push();
     fill('#8C8D90');
-    rect(0, 610, 1366, 95);
+    rect(0, 610, 995, 95, 5);
     pop();
 
     // Side bar
     push();
     fill('#8C8D90');
-    rect(1000, 0, 366, 605);
+    rect(1000, 0, 366, 1366, 5);
 
     // Wallpaper Selection
     if (mode === MODES.Wallpaper) {
         push();
         fill('#00000');
+
         // Number of walls
         rect(1178, 5, 183, 595);
+        for (let i = 0; i < wallPapersImages.length; i++) {
+            new wallThumbnails(1183, i === 0 ? 12 : (6 + (60 * i)), wallPapersImages[i]).display();
+        }
 
-
+        // Number of angles
         rect(1005, 5, 165, 595);
-
+        for (let i = 0; i < wallPapers.length; i++) {
+            new angleButton(1010, i === 0 ? 12 : (6 + (60 * i)), wallPapers[i]).display();
+        }
     }
 
     pop();
@@ -556,4 +564,63 @@ function mousePressed() {
 
 function pixelsValue(x, y) {
     return (x + y * w) * 4;
+}
+
+
+function wallThumbnails(x, y, img) {
+    this.x = x;
+    this.y = y;
+    this.width = 50;
+    this.height = 50;
+
+    this.display = function () {
+        push();
+        fill(0, 255, 0);
+        if (mouseIsPressed) {
+            if (mouseX >= this.x &&
+                mouseX <= this.x + this.width + 120 &&
+                mouseY >= this.y &&
+                mouseY <= this.y + this.height) {
+                fill(255, 0, 0);
+                wallPaperClicked = img.id;
+            }
+        }
+        if (wallPaperClicked === img.id)
+            fill(255, 0, 0);
+        rect(this.x - 1, this.y - 1, this.width + 120, this.height + 1, 5);
+        image(img.thumbnail, this.x, this.y, this.width, this.height);
+        pop();
+    };
+}
+
+function angleButton(x, y, angle) {
+    this.x = x;
+    this.y = y;
+
+    this.width = 50;
+    this.height = 50;
+
+    this.display = function () {
+        push();
+        fill(0, 255, 0);
+        if (mouseIsPressed) {
+            if (mouseX >= this.x &&
+                mouseX <= this.x + this.width + 120 &&
+                mouseY >= this.y &&
+                mouseY <= this.y + this.height) {
+                fill(255, 0, 0);
+                wallAngleClicked = angle;
+            }
+        }
+        if (wallAngleClicked === angle)
+            fill(255, 0, 0);
+        //角度
+        rect(this.x - 1, this.y - 1, this.width + 105, this.height + 1, 5);
+        fill(0);
+        textSize(32);
+        textAlign(CENTER);
+        text('角度:'+(wallPapers.indexOf(angle)+1), this.x + 75, this.y + 33);
+
+        pop();
+    };
 }
