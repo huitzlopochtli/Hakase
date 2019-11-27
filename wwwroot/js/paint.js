@@ -10,6 +10,8 @@ var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 var urlParams = new URLSearchParams(window.location.search);
 var wallPapers = [];
 
+var wallPapersImages = [];
+
 
 
 

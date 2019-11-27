@@ -49,7 +49,18 @@ namespace WebApplication1.Controllers
                 .Take(pageSize)
                 .ToListAsync();
 
-            return Json(res);
+            var totalPage = (int) Math.Ceiling(decimal.Divide(_context.Materials.Count(), pageSize));
+
+            var data = new
+            {
+                prevPage = (pageNumber - 1 == 0) ? -1 : pageNumber - 1,
+                nextPage = pageNumber + 1 > totalPage ? -1 : pageNumber + 1,
+                pageNumer = pageNumber,
+                pageSize = pageSize,
+                data = res
+            };
+
+            return Json(data);
         }
 
         // GET: Materials/Details/5
