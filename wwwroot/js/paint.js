@@ -18,10 +18,11 @@ var wallPapers = [];
 
 // Different Modes
 var MODES = {
-    PANnZOOM: { value: 0, name: "PNZ", code: "P" },
+    RmvMark: { value: 0, name: "RM", code: "RM" },
     Wallpaper: { value: 1, name: "WP", code: "W" },
     Floor: { value: 2, name: "FL", code: "F" },
-    RmvObj: { value: 3, name: "RO", code: "R" }
+    RmvObj: { value: 3, name: "RO", code: "R" },
+    Apply: { value: 4, name: "APL", code: "APL" }
 };
 
 function preload() {
@@ -119,10 +120,10 @@ function draw() {
     //Button 
 
     //Button(buttonX, buttonY, "Angle");
-    Button(buttonX + 80, buttonY, "Remove Object", MODES.RmvObj);
+    Button(buttonX + 80, buttonY, "X Object", MODES.RmvObj);
     Button(buttonX + 160, buttonY, "Wallpaper", MODES.Wallpaper);
     Button(buttonX + 240, buttonY, "Floor", MODES.Floor);
-    Button(buttonX + 320, buttonY, "Angle", MODES.Angle);
+    Button(buttonX + 320, buttonY, "X Mark", MODES.RmvMark);
     Button(buttonX + 400, buttonY, "Apply", MODES.Apply);
 
 
@@ -194,9 +195,11 @@ function Button(x, y, textStr, type) {
         fill(86, 177, 0);
     if (mode === MODES.Floor && type === MODES.Floor)
         fill(86, 177, 0);
-    if (mode === MODES.PANnZOOM && type === MODES.PANnZOOM)
+    if (mode === MODES.RmvMark && type === MODES.RmvMark)
         fill(86, 177, 0);
     if (mode === MODES.Wallpaper && type === MODES.Wallpaper)
+        fill(86, 177, 0);
+    if (mode === MODES.Apply && type === MODES.Apply)
         fill(86, 177, 0);
 
     rect(x, y, 70, 70, 5);
@@ -451,7 +454,7 @@ function mousePressed() {
         mouseX <= (buttonX + 240) + 70 &&
         mouseY >= buttonY &&
         mouseY <= buttonY + 70) {
-        mode = MODES.PANnZOOM;
+        mode = MODES.Floor;
         console.log("Floor Clicked");
     }
 
@@ -459,7 +462,7 @@ function mousePressed() {
         mouseX <= (buttonX + 320) + 70 &&
         mouseY >= buttonY &&
         mouseY <= buttonY + 70) {
-        mode = MODES.PANnZOOM;
+        mode = MODES.RmvMark;
         console.log("Angle Clicked");
     }
 
@@ -467,7 +470,7 @@ function mousePressed() {
         mouseX <= (buttonX + 400) + 70 &&
         mouseY >= buttonY &&
         mouseY <= buttonY + 70) {
-        mode = MODES.PANnZOOM;
+        mode = MODES.Apply;
         console.log("Apply Clicked");
     }
 

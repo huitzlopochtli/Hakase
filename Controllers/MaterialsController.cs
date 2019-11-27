@@ -32,6 +32,23 @@ namespace WebApplication1.Controllers
             return View(applicationDbContext);
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> MaterialThumbnails()
+        {
+            var res = await _context.Materials.OrderBy(m => m.Precedence).ThenByDescending(m => m.DateCreated)
+                .ThenBy(m => m.DateModified).Select(m =>
+                    new
+                    {
+                        id = m.Id ,
+                        thumbnail = m.ImageThumbnailUrl4,
+                        image = m.ImageThumbnailUrl1
+                    }
+                    ).ToListAsync();
+
+            return Json(res);
+        }
+
         // GET: Materials/Details/5
         public async Task<IActionResult> Details(int? id)
         {
