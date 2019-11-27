@@ -32,7 +32,9 @@ function preload() {
     imgOrg = loadImage(urlParams.get('imgUrl'));
     img = loadImage(urlParams.get('imgUrl'), img => {
         img.resize(w, h);
-        imgRender = img;
+    });
+    imgRender = loadImage(urlParams.get('imgUrl'), img => {
+        img.resize(w, h);
     });
 }
 
@@ -120,10 +122,10 @@ function draw() {
     //Button 
 
     //Button(buttonX, buttonY, "Angle");
-    Button(buttonX + 80, buttonY, "X Object", MODES.RmvObj);
+    Button(buttonX + 80, buttonY, "Mark", MODES.RmvObj);
     Button(buttonX + 160, buttonY, "Wallpaper", MODES.Wallpaper);
     Button(buttonX + 240, buttonY, "Floor", MODES.Floor);
-    Button(buttonX + 320, buttonY, "X Mark", MODES.RmvMark);
+    Button(buttonX + 320, buttonY, "Remove", MODES.RmvMark);
     Button(buttonX + 400, buttonY, "Apply", MODES.Apply);
 
 
@@ -136,7 +138,7 @@ function draw() {
     // Remove Object
     if (mode === MODES.RmvObj) {
 
-        if (mouseIsPressed && mouseX >= 0 && mouseY >= 0 && mouseX <= 995 && mouseY <= 665) {
+        if (mouseIsPressed && mouseX >= 0 && mouseY >= 0 && mouseX <= 995 && mouseY <= 605) {
 
             var upperLeft = { x: mouseX - 50, y: mouseY - 50 };
             var upperright = { x: mouseX + 50, y: mouseY - 50 };
@@ -184,6 +186,63 @@ function draw() {
 
             img.updatePixels();
 
+        }
+    }
+
+    // Remove mark
+    if (mode === MODES.RmvMark) {
+        if (mouseX >= 0 && mouseX <= 995 && mouseY >= 0 && mouseY <= 605) {
+
+
+            var radius = 10;
+
+            fill(255, 255, 255);
+            if (mouseIsPressed) {
+                fill(0, 255, 0);
+
+                var xCenter = mouseX;
+                var yCenter = mouseY;
+                var pp;
+                for (let x = xCenter - radius; x <= xCenter; x++) {
+                    for (let y = yCenter - radius; y <= yCenter; y++) {
+                        // we don't have to take the square root, it's slow
+                        if ((x - xCenter) * (x - xCenter) + (y - yCenter) * (y - yCenter) <= radius * radius) {
+                            var xSym = xCenter - (x - xCenter);
+                            var ySym = yCenter - (y - yCenter);
+                            console.log(pixelsValue(x, y), pixelsValue(x, ySym), pixelsValue(xSym, y), pixelsValue(xSym, ySym));
+
+                            pp = pixelsValue(x, y);
+                            img.pixels[pp + 0] = imgRender.pixels[pp + 0];
+                            img.pixels[pp + 1] = imgRender.pixels[pp + 1];
+                            img.pixels[pp + 2] = imgRender.pixels[pp + 2];
+                            img.pixels[pp + 3] = imgRender.pixels[pp + 3];
+
+                            pp = pixelsValue(x, ySym);
+                            img.pixels[pp + 0] = imgRender.pixels[pp + 0];
+                            img.pixels[pp + 1] = imgRender.pixels[pp + 1];
+                            img.pixels[pp + 2] = imgRender.pixels[pp + 2];
+                            img.pixels[pp + 3] = imgRender.pixels[pp + 3];
+
+                            pp = pixelsValue(xSym, y);
+                            img.pixels[pp + 0] = imgRender.pixels[pp + 0];
+                            img.pixels[pp + 1] = imgRender.pixels[pp + 1];
+                            img.pixels[pp + 2] = imgRender.pixels[pp + 2];
+                            img.pixels[pp + 3] = imgRender.pixels[pp + 3];
+
+                            pp = pixelsValue(xSym, ySym);
+                            img.pixels[pp + 0] = imgRender.pixels[pp + 0];
+                            img.pixels[pp + 1] = imgRender.pixels[pp + 1];
+                            img.pixels[pp + 2] = imgRender.pixels[pp + 2];
+                            img.pixels[pp + 3] = imgRender.pixels[pp + 3];
+
+
+                        }
+                    }
+                }
+
+                img.updatePixels();
+            }
+            circle(mouseX, mouseY, radius * 2, radius * 2);
         }
     }
 }
@@ -318,10 +377,10 @@ function Angle(x, y, w, l, strokeVal, type) {
     };
 
     this.mouseDragged = function () {
-        if (mouseX >= 2 &&
-            mouseX <= 993 &&
-            mouseY >= 3 &&
-            mouseY <= 603) {
+        if (mouseX >= 1 &&
+            mouseX <= 994 &&
+            mouseY >= 1 &&
+            mouseY <= 604) {
 
             if (locked1) {
                 noStroke();
@@ -396,24 +455,21 @@ function Angle(x, y, w, l, strokeVal, type) {
     }
 }
 
-
+// Check mouse Dragged
 function mouseDragged() {
     for (var i = 0; i < wallPapers.length; i++) {
         wallPapers[i].mouseDragged();
     }
 }
-
+// Check mouse Released
 function mouseReleased() {
     for (var i = 0; i < wallPapers.length; i++) {
         wallPapers[i].mouseReleased();
     }
 }
 
-
+// Check mouse Pressed
 function mousePressed() {
-    // Check mouse Pressed
-
-
 
 
     // Wallpaper button
@@ -447,7 +503,8 @@ function mousePressed() {
         console.log("Wallpaper Clicked");
 
         //create Rectangle angle
-        wallPapers.push(new Angle(50, 50, 400, 400, 0, ""));
+        if (wallPapers.length === 0)
+            wallPapers.push(new Angle(50, 50, 400, 400, 0, ""));
     }
 
     if (mouseX >= (buttonX + 240) &&
@@ -477,3 +534,6 @@ function mousePressed() {
 
 }
 
+function pixelsValue(x, y) {
+    return (x + y * w) * 4;
+}
