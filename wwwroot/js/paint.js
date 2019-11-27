@@ -98,19 +98,9 @@ function draw() {
     // Main body
 
 
-    //tween/smooth motion
-    //if (mode === MODES.PANnZOOM && mouseX >= 0 && mouseX <= 995 && mouseY >= 0 && mouseY <= 605) {
-    //    x = lerp(x, tox, .1);
-    //    y = lerp(y, toy, .1);
-    //    w = lerp(w, tow, .1);
-    //    h = lerp(h, toh, .1);
-    //    imgX = x - w / 2;
-    //    imgY = y - h / 2;
-    //}
 
     image(img, imgX, imgY, w, h);
 
-    // -- background END --
 
 
 
@@ -125,6 +115,9 @@ function draw() {
     push();
     fill('#8C8D90');
     rect(1000, 0, 366, 1366, 5);
+
+    // -- background END --
+
 
     // Wallpaper Selection
     if (mode === MODES.Wallpaper) {
@@ -500,9 +493,10 @@ function mouseReleased() {
 function mousePressed() {
 
 
-    // Wallpaper button
+    // Wallpaper angles clicked
     for (var i = 0; i < wallPapers.length; i++) {
-        wallPapers[i].clicked();
+        if (wallAngleClicked === wallPapers[i])
+            wallPapers[i].clicked();
     }
 
     // Button Pressed 1st
@@ -520,7 +514,6 @@ function mousePressed() {
         mouseY <= buttonY + 70) {
         mode = MODES.RmvObj;
         console.log("Remove Clicked");
-
     }
 
     if (mouseX >= (buttonX + 160) &&
@@ -531,8 +524,10 @@ function mousePressed() {
         console.log("Wallpaper Clicked");
 
         //create Rectangle angle
-        if (wallPapers.length === 0)
+        if (wallPapers.length === 0) {
             wallPapers.push(new Angle(50, 50, 400, 400, 0, ""));
+            wallAngleClicked = wallPapers[0];
+        }
     }
 
     if (mouseX >= (buttonX + 240) &&
@@ -619,7 +614,7 @@ function angleButton(x, y, angle) {
         fill(0);
         textSize(32);
         textAlign(CENTER);
-        text('角度:'+(wallPapers.indexOf(angle)+1), this.x + 75, this.y + 33);
+        text('角度:' + (wallPapers.indexOf(angle) + 1), this.x + 75, this.y + 33);
 
         pop();
     };
