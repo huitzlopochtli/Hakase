@@ -8,13 +8,16 @@ var buttonX = 270;
 var buttonY = 625;
 var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 var urlParams = new URLSearchParams(window.location.search);
-var wallPapers = [];
 
+var wallPapers = [];
 var wallPaperClicked;
 var wallAngleClicked;
-
-
 var wallPapersImages = [];
+
+var currentPage;
+var prevPage;
+var nextPage;
+var totalPage;
 
 // Different Modes
 var MODES = {
@@ -45,6 +48,11 @@ function getImages(wallPaperNumber, floorNumber) {
         success: function (data) {
             console.log(data);
             wallPapersImages = [];
+            currentPage = data.pageNumber;
+            prevPage = data.prevPage;
+            nextPage = data.nextPage;
+            totalPage = data.totalPage;
+
             for (let i = 0; i < data.data.length; i++) {
                 wallPapersImages.push(
                     {
@@ -126,13 +134,19 @@ function draw() {
             new wallThumbnails(1183, i === 0 ? 12 : (6 + (60 * i)), wallPapersImages[i]).display();
         }
 
+        new prevButton(1050, 610).display();
+        new currentButton(1130, 610).display();
+        new nextButton(1210, 610).display();
+
         // Number of angles
         rect(1005, 5, 165, 595);
         for (let i = 0; i < wallPapers.length; i++) {
             new angleButton(1010, i === 0 ? 12 : (6 + (60 * i)), wallPapers[i]).display();
         }
 
-        new createNewAngle(1010, 500).display();
+        new createNewAngle(1010, 540).display();
+        new angleDelete(1090, 540).display();
+
     }
 
     pop();
@@ -342,7 +356,8 @@ function Angle(x, y, w, l, strokeVal, type) {
                 noFill();
             }
         } else {
-            noStroke();
+            stroke(0, 255, 0);
+            strokeWeight(1);
             noFill(); //change this to noFill later
             overBox1 = false;
         }
@@ -357,7 +372,8 @@ function Angle(x, y, w, l, strokeVal, type) {
                 noFill();
             }
         } else {
-            noStroke();
+            stroke(0, 255, 0);
+            strokeWeight(1);
             noFill(); //change this to noFill later
             overBox2 = false;
         }
@@ -372,7 +388,8 @@ function Angle(x, y, w, l, strokeVal, type) {
                 noFill();
             }
         } else {
-            noStroke();
+            stroke(0, 255, 0);
+            strokeWeight(1);
             noFill(); //change this to noFill later
             overBox3 = false;
         }
@@ -387,7 +404,8 @@ function Angle(x, y, w, l, strokeVal, type) {
                 noFill();
             }
         } else {
-            noStroke();
+            stroke(0, 255, 0);
+            strokeWeight(1);
             noFill(); //change this to noFill later
             overBox4 = false;
         }
@@ -472,7 +490,7 @@ function Angle(x, y, w, l, strokeVal, type) {
         locked2 = false;
         locked3 = false;
         locked4 = false;
-    }
+    };
 }
 
 // Check mouse Dragged
@@ -524,7 +542,7 @@ function mousePressed() {
 
         //create Rectangle angle
         if (wallPapers.length === 0) {
-            wallPapers.push(new Angle(50, 50, 400, 400, 0, ""));
+            wallPapers.push(new Angle(50, 50, 400, 400, 0, null));
             wallAngleClicked = wallPapers[0];
         }
     }
@@ -575,6 +593,7 @@ function wallThumbnails(x, y, img) {
                 mouseY <= this.y + this.height) {
                 fill(255, 0, 0);
                 wallPaperClicked = img.id;
+                wallAngleClicked.type = img;
             }
         }
         if (wallPaperClicked === img.id)
@@ -608,6 +627,9 @@ function angleButton(x, y, angle) {
             fill(255, 0, 0);
         //角度
         rect(this.x - 1, this.y - 1, this.width + 105, this.height + 1, 5);
+        if (angle.type) {
+            image(angle.type.thumbnail, this.x, this.y, this.width + 103, this.height - 2);
+        }
         fill(0);
         textSize(32);
         textAlign(CENTER);
@@ -632,7 +654,7 @@ function createNewAngle(x, y) {
             mouseY >= this.y &&
             mouseY <= this.y + this.height
         ) {
-            var ang = new Angle(50, 50, 400, 400, 0, "");
+            var ang = new Angle(50, 50, 400, 400, 0, null);
             if (!isAngleAvailable(ang)) {
                 wallPapers.push(ang);
                 wallAngleClicked = ang;
@@ -641,7 +663,10 @@ function createNewAngle(x, y) {
         }
 
         rect(this.x, this.y, this.width, this.height, 5);
-
+        fill(0);
+        textSize(14);
+        textAlign(CENTER);
+        text('新しい角度', this.x + this.width / 2, this.y + this.height / 2);
         pop();
     };
 }
@@ -662,3 +687,117 @@ function isAngleAvailable(ang) {
     }
     return false;
 }
+
+function angleDelete(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 70;
+    this.height = 50;
+
+    this.display = function () {
+        push();
+        fill(0, 255, 0);
+        if (mouseIsPressed &&
+            mouseX >= this.x &&
+            mouseX <= this.x + this.width &&
+            mouseY >= this.y &&
+            mouseY <= this.y + this.height
+        ) {
+            if (wallPapers.length !== 0 && wallPapers[0] !== wallAngleClicked) {
+                wallPapers = wallPapers.slice(wallPapers.indexOf(wallAngleClicked), 1);
+                wallAngleClicked = wallPapers[0];
+            }
+        }
+
+        rect(this.x, this.y, this.width, this.height, 5);
+        fill(0);
+        textSize(14);
+        textAlign(CENTER);
+        text('削除する', this.x + this.width / 2, this.y + this.height / 2);
+        pop();
+    };
+}
+
+function nextButton(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 70;
+    this.height = 50;
+
+    this.display = function () {
+        push();
+        fill(0, 255, 0);
+        if (mouseIsPressed &&
+            mouseX >= this.x &&
+            mouseX <= this.x + this.width &&
+            mouseY >= this.y &&
+            mouseY <= this.y + this.height
+        ) {
+            if (nextPage <= totalPage)
+                getImages(nextPage, null);
+        }
+
+        rect(this.x, this.y, this.width, this.height, 5);
+        fill(0);
+        textSize(14);
+        textAlign(CENTER);
+        text('>>' + nextPage, this.x + this.width / 2, this.y + this.height / 2);
+        pop();
+    };
+}
+
+function prevButton(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 70;
+    this.height = 50;
+
+    this.display = function () {
+        push();
+        fill(0, 255, 0);
+        if (mouseIsPressed &&
+            mouseX >= this.x &&
+            mouseX <= this.x + this.width &&
+            mouseY >= this.y &&
+            mouseY <= this.y + this.height
+        ) {
+            if (prevPage > 0)
+                getImages(prevPage, null);
+        }
+
+        rect(this.x, this.y, this.width, this.height, 5);
+        fill(0);
+        textSize(14);
+        textAlign(CENTER);
+        text(prevPage + '<<', this.x + this.width / 2, this.y + this.height / 2);
+        pop();
+    };
+}
+
+function currentButton(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 70;
+    this.height = 50;
+
+    this.display = function () {
+        push();
+        fill(0, 255, 0);
+        if (mouseIsPressed &&
+            mouseX >= this.x &&
+            mouseX <= this.x + this.width &&
+            mouseY >= this.y &&
+            mouseY <= this.y + this.height
+        ) {
+            ;
+        }
+
+        rect(this.x, this.y, this.width, this.height, 5);
+        fill(0);
+        textSize(14);
+        textAlign(CENTER);
+        text('..' + currentPage + '..', this.x + this.width / 2, this.y + this.height / 2);
+        pop();
+    };
+}
+

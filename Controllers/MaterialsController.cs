@@ -55,8 +55,9 @@ namespace WebApplication1.Controllers
             {
                 prevPage = (pageNumber - 1 == 0) ? -1 : pageNumber - 1,
                 nextPage = pageNumber + 1 > totalPage ? -1 : pageNumber + 1,
-                pageNumer = pageNumber,
+                pageNumber = pageNumber,
                 pageSize = pageSize,
+                totalPage = totalPage,
                 data = res
             };
 
