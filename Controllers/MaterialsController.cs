@@ -34,14 +34,14 @@ namespace WebApplication1.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> MaterialThumbnails(int pageNumber = 1, int pageSize = 10)
+        public async Task<IActionResult> MaterialThumbnails(int pageNumber = 1, int pageSize = 5)
         {
             var res = await _context.Materials.OrderBy(m => m.Precedence).ThenByDescending(m => m.DateCreated)
                 .ThenBy(m => m.DateModified).Select(m =>
                     new
                     {
                         id = m.Id,
-                        thumbnail = m.ImageThumbnailUrl4,
+                        thumbnail = m.ImageThumbnailUrl3,
                         image = m.ImageThumbnailUrl1
                     }
                     )

@@ -18,6 +18,7 @@ var currentPage;
 var prevPage;
 var nextPage;
 var totalPage;
+var press = 0;
 
 // Different Modes
 var MODES = {
@@ -58,7 +59,9 @@ function getImages(wallPaperNumber, floorNumber) {
                     {
                         id: data.data[i].id,
                         thumbnail: loadImage(data.data[i].thumbnail),
-                        fullImage: loadImage(data.data[i].image)
+                        fullImage: loadImage(data.data[i].image, img => {
+                            img.resize(w, h);
+                        })
                     });
             }
         },
@@ -131,7 +134,7 @@ function draw() {
         // Number of walls
         rect(1178, 5, 183, 595);
         for (let i = 0; i < wallPapersImages.length; i++) {
-            new wallThumbnails(1183, i === 0 ? 12 : (6 + (60 * i)), wallPapersImages[i]).display();
+            new wallThumbnails(1200, 40 + 100 * i, wallPapersImages[i]).display();
         }
 
         new prevButton(1050, 610).display();
@@ -580,8 +583,8 @@ function pixelsValue(x, y) {
 function wallThumbnails(x, y, img) {
     this.x = x;
     this.y = y;
-    this.width = 50;
-    this.height = 50;
+    this.width = 100;
+    this.height = 100;
 
     this.display = function () {
         push();
@@ -598,8 +601,8 @@ function wallThumbnails(x, y, img) {
         }
         if (wallPaperClicked === img.id)
             fill(255, 0, 0);
-        rect(this.x - 1, this.y - 1, this.width + 120, this.height + 1, 5);
-        image(img.thumbnail, this.x, this.y, this.width, this.height);
+        rect(this.x + 15, this.y + 15, this.width - 10, this.height - 10, 5);
+        image(img.thumbnail, this.x + 20, this.y + 20, this.width - 20, this.height - 20);
         pop();
     };
 }
@@ -733,8 +736,10 @@ function nextButton(x, y) {
             mouseY >= this.y &&
             mouseY <= this.y + this.height
         ) {
-            if (nextPage <= totalPage)
+            fill(255, 0, 0);
+            if (nextPage <= totalPage && press === 0)
                 getImages(nextPage, null);
+            press = press === 0 ? 1 : 0;
         }
 
         rect(this.x, this.y, this.width, this.height, 5);
