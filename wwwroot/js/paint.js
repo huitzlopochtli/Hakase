@@ -10,13 +10,9 @@ var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 var urlParams = new URLSearchParams(window.location.search);
 var wallPapers = [];
 
+
 var wallPapersImages = [];
-
-
-
-
-
-
+var wallPaperNumber = 1;
 
 // Different Modes
 var MODES = {
@@ -28,15 +24,37 @@ var MODES = {
 };
 
 function preload() {
-    console.log(urlParams.get('imgUrl').replace(/\\/g, "/"));
-    //img = loadImage(urlParams.get('imgUrl').replace(/\\/g, "/"));
-    //img.resize(w, h);
+
     imgOrg = loadImage(urlParams.get('imgUrl'));
     img = loadImage(urlParams.get('imgUrl'), img => {
         img.resize(w, h);
     });
     imgRender = loadImage(urlParams.get('imgUrl'), img => {
         img.resize(w, h);
+    });
+    getImages();
+}
+
+function getImages(wallPaperNumber, floorNumber) {
+    $.ajax({
+        type: 'GET',
+        url: '/materials/MaterialThumbnails?pageNumber=' + wallPaperNumber,
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            wallPapersImages = [];
+            for (let i = 0; i < data.data.length; i++) {
+                wallPapersImages.push(
+                    {
+                        id: data.data[i].id,
+                        thumbnail: loadImage(data.data[i].thumbnail),
+                        fullImage: loadImage(data.data[i].image)
+                    });
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
     });
 }
 
