@@ -115,10 +115,6 @@ function draw() {
     push();
     fill('#8C8D90');
     rect(1000, 0, 366, 1366, 5);
-
-    // -- background END --
-
-
     // Wallpaper Selection
     if (mode === MODES.Wallpaper) {
         push();
@@ -135,6 +131,8 @@ function draw() {
         for (let i = 0; i < wallPapers.length; i++) {
             new angleButton(1010, i === 0 ? 12 : (6 + (60 * i)), wallPapers[i]).display();
         }
+
+        new createNewAngle(1010, 500).display();
     }
 
     pop();
@@ -153,7 +151,8 @@ function draw() {
     //Display Wallpaper Angles
     if (mode === MODES.Wallpaper)
         for (var i = 0; i < wallPapers.length; i++) {
-            wallPapers[i].display();
+            if (wallAngleClicked === wallPapers[i])
+                wallPapers[i].display();
         }
 
     // Remove Object
@@ -554,13 +553,11 @@ function mousePressed() {
         console.log("Apply Clicked");
     }
 
-
 }
 
 function pixelsValue(x, y) {
     return (x + y * w) * 4;
 }
-
 
 function wallThumbnails(x, y, img) {
     this.x = x;
@@ -618,4 +615,50 @@ function angleButton(x, y, angle) {
 
         pop();
     };
+}
+
+function createNewAngle(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 75;
+    this.height = 50;
+
+    this.display = function () {
+        push();
+        fill(0, 255, 0);
+        if (mouseIsPressed &&
+            mouseX >= this.x &&
+            mouseX <= this.x + this.width &&
+            mouseY >= this.y &&
+            mouseY <= this.y + this.height
+        ) {
+            var ang = new Angle(50, 50, 400, 400, 0, "");
+            if (!isAngleAvailable(ang)) {
+                wallPapers.push(ang);
+                wallAngleClicked = ang;
+            }
+            fill(255, 0, 0);
+        }
+
+        rect(this.x, this.y, this.width, this.height, 5);
+
+        pop();
+    };
+}
+
+function isAngleAvailable(ang) {
+    for (let i = 0; i < wallPapers.length; i++) {
+        if (
+            wallPapers[i].bx1 === ang.bx1 &&
+            wallPapers[i].by1 === ang.by1 &&
+            wallPapers[i].bx2 === ang.bx2 &&
+            wallPapers[i].by2 === ang.by2 &&
+            wallPapers[i].bx3 === ang.bx3 &&
+            wallPapers[i].by3 === ang.by3 &&
+            wallPapers[i].bx4 === ang.bx4 &&
+            wallPapers[i].by4 === ang.by4
+        )
+            return true;
+    }
+    return false;
 }
