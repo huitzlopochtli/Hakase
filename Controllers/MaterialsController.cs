@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
         // GET: Materials
         public async Task<IActionResult> Index(int? pageNumber = 1, int pageSize = 5)
         {
-            var applicationDbContext = _context.Materials.Include(m => m.User).OrderByDescending(m => m.DateCreated).ThenByDescending(m => m.DateCreated);
+            var applicationDbContext = _context.Materials.Include(m => m.User).OrderByDescending(m => m.DateCreated).ThenByDescending(m => m.DateModified);
             var aa = await PaginatedList<Material>.CreateAsync(applicationDbContext.AsNoTracking(), pageNumber ?? 1,
                 pageSize);
             return View(applicationDbContext);
@@ -34,17 +34,20 @@ namespace WebApplication1.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> MaterialThumbnails()
+        public async Task<IActionResult> MaterialThumbnails(int pageNumber = 1, int pageSize = 10)
         {
             var res = await _context.Materials.OrderBy(m => m.Precedence).ThenByDescending(m => m.DateCreated)
                 .ThenBy(m => m.DateModified).Select(m =>
                     new
                     {
-                        id = m.Id ,
+                        id = m.Id,
                         thumbnail = m.ImageThumbnailUrl4,
                         image = m.ImageThumbnailUrl1
                     }
-                    ).ToListAsync();
+                    )
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
 
             return Json(res);
         }

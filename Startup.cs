@@ -96,7 +96,7 @@ namespace WebApplication1
 
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy();
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
