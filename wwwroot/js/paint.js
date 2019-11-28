@@ -1,4 +1,7 @@
-﻿var imgOrg, img, imgRender;
+﻿var canvas;
+
+
+var imgOrg, img, imgRender, imgCopy;
 var w = 995, h = 605, tow, toh;
 var x, y, tox, toy;
 var zoom = .01; //zoom step per mouse tick 
@@ -19,6 +22,9 @@ var prevPage;
 var nextPage;
 var totalPage;
 var press = 0;
+
+var appliedClicked = 0;
+
 
 // Different Modes
 var MODES = {
@@ -75,7 +81,7 @@ function setup() {
     img.loadPixels();
     imgRender.loadPixels();
 
-    var canvas = createCanvas(1366, 705);
+    canvas = createCanvas(1366, 705);
     canvas.parent('paint');
     noStroke();
 
@@ -108,12 +114,7 @@ function draw() {
 
     // Main body
 
-
-
     image(img, imgX, imgY, w, h);
-
-
-
 
 
     // Nav
@@ -198,6 +199,7 @@ function draw() {
             var diff = 5;
             var count = 0;
 
+
             for (let i = index1; i < index4; i += 4) {
                 //i >= index1 + 995 * 4 * count && i <= index2 + 995 * 4 * count
                 if (true) {
@@ -220,6 +222,8 @@ function draw() {
 
                 count++;
             }
+
+
 
             img.updatePixels();
 
@@ -574,13 +578,14 @@ function mousePressed() {
         console.log("Apply Clicked");
 
 
-        if (wallAngleClicked && wallAngleClicked.type) {
-            wallAngleClicked.type.fullImage.loadPixels();
+        for (let i = 0; i < wallPapers.length; i++) {
+            if (wallPapers[i].type) {
+                wallPapers[i].type.fullImage.loadPixels();
 
-            console.log(wallAngleClicked);
-            console.log(wallAngleClicked.type.fullImage.pixels);
-
+                skewImage(wallPapers[i]);
+            }
         }
+
     }
 
 }
@@ -815,3 +820,57 @@ function currentButton(x, y) {
     };
 }
 
+function skewImage(w) {
+    var skImg = w.type.fullImage;
+    var first = { x: w.bx1, y: w.by1 };
+    var second = { x: w.bx2, y: w.by2 };
+    var third = { x: w.bx3, y: w.by3 };
+    var forth = { x: w.bx4, y: w.by4 };
+
+    var dist1 = first.y - 0;
+    var dist2 = 605 - second.y;
+    var dist3 = 605 - third.y;
+    var dist4 = forth.y - 605;
+    var deg = 0;
+
+    w.type.fullImage.loadPixels();
+    
+    revert(imgCopy, img);
+
+    for (let i = 0; i < img.pixels.length; i += 4) {
+        if (
+            img.pixels[i + 0] === 0 &&
+            img.pixels[i + 1] === 0 &&
+            img.pixels[i + 2] === 0 &&
+            img.pixels[i + 3] === 255
+        ) {
+            img.pixels[i + 0] = w.type.fullImage.pixels[i + 0];
+            img.pixels[i + 1] = w.type.fullImage.pixels[i + 1];
+            img.pixels[i + 2] = w.type.fullImage.pixels[i + 2];
+            img.pixels[i + 3] = w.type.fullImage.pixels[i + 3];
+        }
+    }
+
+    img.updatePixels();
+
+}
+
+
+function lengthSquare(X, Y) {
+    var xDiff = X.x - Y.x;
+    var yDiff = X.y - Y.y;
+    return xDiff * xDiff + yDiff * yDiff;
+}
+
+function returnAngle(X, Y) {
+    return Math.sqrt(lengthSquare(X, Y));
+}
+
+function revert(imgPrev, imgNow) {
+    for (let i = 0; i < img.pixels.length; i += 4) {
+        imgNow.pixels[i + 0] = imgPrev.pixels[i + 0];
+        imgNow.pixels[i + 1] = imgPrev.pixels[i + 1];
+        imgNow.pixels[i + 2] = imgPrev.pixels[i + 2];
+        imgNow.pixels[i + 3] = imgPrev.pixels[i + 3];
+    }
+}
