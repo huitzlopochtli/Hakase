@@ -835,7 +835,7 @@ function skewImage(w) {
 
     w.type.fullImage.loadPixels();
     
-    revert(imgCopy, img);
+    //revert(imgCopy, img);
 
     for (let i = 0; i < img.pixels.length; i += 4) {
         if (
