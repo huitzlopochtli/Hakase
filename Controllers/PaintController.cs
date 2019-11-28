@@ -35,21 +35,26 @@ namespace WebApplication1.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                var reformImages = _context.ReformedImages.OrderByDescending(r => r.DateCreated)
-                    .ThenByDescending(r => r.DateModified);
 
-                if (HttpContext.User.IsInRole("Customer"))
-                    reformImages.Where(r => r.UploadedImage.User.Id == _userManager.GetUserAsync(HttpContext.User).Result.Id);
+                if (HttpContext.User.IsInRole("Admin"))
+                {
+                    var reformImages = _context.ReformedImages.OrderByDescending(r => r.DateCreated)
+                        .ThenByDescending(r => r.DateModified);
+                    var uploadedImages = _context.UploadedImages.OrderByDescending(u => u.DateCreated)
+                        .ThenByDescending(u => u.DateModified);
+                    var res = new UploadReformListViewModel(reformImages, uploadedImages);
+                    return View(res);
+                }
+                else
+                {
+                    var reformImages = _context.ReformedImages.Where(r => r.UploadedImage.UserCreated == HttpContext.User.Identity.Name).OrderByDescending(r => r.DateCreated)
+                        .ThenByDescending(r => r.DateModified);
+                    var uploadedImages = _context.UploadedImages.Where(u => u.UserCreated == HttpContext.User.Identity.Name).OrderByDescending(u => u.DateCreated)
+                        .ThenByDescending(u => u.DateModified);
+                    var res = new UploadReformListViewModel(reformImages, uploadedImages);
+                    return View(res);
+                }
 
-                var uploadedImages = _context.UploadedImages.OrderByDescending(u => u.DateCreated)
-                    .ThenByDescending(u => u.DateModified);
-
-                if (HttpContext.User.IsInRole("Customer"))
-                    uploadedImages.Where(u => u.User.Id == _userManager.GetUserAsync(HttpContext.User).Result.Id);
-
-                var res = new UploadReformListViewModel(reformImages, uploadedImages);
-
-                return View(res);
             }
 
             return View();
@@ -87,7 +92,7 @@ namespace WebApplication1.Controllers
                     return RedirectToAction("Edit", routerVal);
 
                 }
-                catch
+                catch (Exception e)
                 { }
             }
 
@@ -123,6 +128,11 @@ namespace WebApplication1.Controllers
             {
                 username = HttpContext.User.Identity.Name;
             }
+
+            string pathD = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "user", username);
+
+            if (!Directory.Exists(pathD))
+                Directory.CreateDirectory(pathD);
 
             //string path = this._hostingEnvironment.WebRootPath + $"\\images\\user\\{username}\\";
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "user", username, filename);

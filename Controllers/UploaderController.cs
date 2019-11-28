@@ -149,6 +149,10 @@ namespace WebApplication1.Controllers
 
         private string GetPathAndFilename(string filename)
         {
+            string pathD = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "materials");
+
+            if (!Directory.Exists(pathD))
+                Directory.CreateDirectory(pathD);
             //string path = this.hostingEnvironment.WebRootPath + "\\images\\materials\\";
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","images","materials", filename);
 
