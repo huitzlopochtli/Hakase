@@ -150,7 +150,7 @@ namespace WebApplication1.Controllers
         private string GetPathAndFilename(string filename)
         {
             //string path = this.hostingEnvironment.WebRootPath + "\\images\\materials\\";
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/images/materials/", filename);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","images","materials", filename);
 
             return path;
         }

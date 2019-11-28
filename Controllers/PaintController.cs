@@ -125,7 +125,7 @@ namespace WebApplication1.Controllers
             }
 
             //string path = this._hostingEnvironment.WebRootPath + $"\\images\\user\\{username}\\";
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/images/user/" + username, filename);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "user", username, filename);
 
             return path;
 
