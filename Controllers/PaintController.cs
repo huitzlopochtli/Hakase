@@ -64,56 +64,31 @@ namespace WebApplication1.Controllers
 
                 filename = this.EnsureCorrectFilename(filename);
 
-                string materialName = filename.Split(".")[0];
-
                 string serverFilePath = this.GetPathAndFilename(filename);
 
-                byte[] buffer = new byte[16 * 1024];
-
-
-                using (FileStream output = System.IO.File.Create(serverFilePath))
+                try
                 {
-                    using (Stream input = source.OpenReadStream())
+                    await source.CopyToAsync(new FileStream(serverFilePath, FileMode.Create));
+
+                    string username = "Guest" + HttpContext.Session.Id;
+                    if (HttpContext.User.Identity.IsAuthenticated)
+                        username = HttpContext.User.Identity.Name;
+
+                    string imgUrl = $"\\images\\user\\{username}\\{filename}";
+
+                    var routerVal = new { imgUrl };
+
+                    await _context.UploadedImages.AddAsync(new UploadedImage
                     {
+                        ImageUrl = imgUrl,
+                        User = _userManager.GetUserAsync(HttpContext.User).Result
+                    });
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Edit", routerVal);
 
-                        try
-                        {
-                            string username = "Guest" + HttpContext.Session.Id;
-                            if (HttpContext.User.Identity.IsAuthenticated)
-                                username = HttpContext.User.Identity.Name;
-
-                            string imgUrl = $"\\images\\user\\{username}\\{filename}";
-
-                            var routerVal = new { imgUrl };
-
-                            await _context.UploadedImages.AddAsync(new UploadedImage
-                            {
-                                ImageUrl = imgUrl,
-                                User = _userManager.GetUserAsync(HttpContext.User).Result
-                            });
-                            await _context.SaveChangesAsync();
-                            return RedirectToAction("Edit", routerVal);
-
-                        }
-                        catch
-                        { }
-                        finally
-                        {
-                            long totalReadBytes = 0;
-                            int readBytes;
-
-
-
-                            while ((readBytes = input.Read(buffer, 0, buffer.Length)) > 0)
-                            {
-                                await output.WriteAsync(buffer, 0, readBytes);
-                                totalReadBytes += readBytes;
-                            }
-
-                        }
-                    }
                 }
-
+                catch
+                { }
             }
 
             return View();

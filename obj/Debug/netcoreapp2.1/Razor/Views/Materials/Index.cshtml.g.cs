@@ -73,7 +73,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(145, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "98d68c854b664aae987f77eb9d6f0ef5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "52f68c9959414926a3966f2993ce4275", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -92,7 +92,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css\" />\r\n\r\n");
             EndContext();
             BeginContext(316, 53, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "84855adaf8b44450b0fbb6cc9dde5312", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1b022018060e4c3a9143f41813698880", async() => {
                 BeginContext(361, 4, true);
                 WriteLiteral("← 戻る");
                 EndContext();
@@ -116,7 +116,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<br />\r\n<br />\r\n\r\n<div class=\"info-box\">\r\n    <span class=\"info-box-icon bg-green\"><i class=\"ion ion-ios-people-outline\"></i></span>\r\n\r\n    <div class=\"info-box-content\">\r\n        <span class=\"info-box-text\"><h1>素材</h1></span>\r\n        ");
             EndContext();
             BeginContext(607, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8fd30f9ffb54ab99a6ff6db8cc59812", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ceac73de2ad640efbc42555edba914b9", async() => {
                 BeginContext(657, 10, true);
                 WriteLiteral("新しい素材を作成する");
                 EndContext();
@@ -269,7 +269,7 @@ WriteAttributeValue("", 1718, item.ImageThumbnailUrl4, 1718, 24, false);
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(2313, 51, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38b7f7190bce4d89856cbd1f857b9330", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d1eebd291f0b44ebb6fa92469b0083b2", async() => {
                 BeginContext(2358, 2, true);
                 WriteLiteral("編集");
                 EndContext();
@@ -304,7 +304,7 @@ WriteAttributeValue("", 1718, item.ImageThumbnailUrl4, 1718, 24, false);
             WriteLiteral("  | \r\n                    ");
             EndContext();
             BeginContext(2390, 54, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ec4f5d1fe834264a5a45bfec4209901", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0000e6b4b89942499586c865d04f6c2b", async() => {
                 BeginContext(2438, 2, true);
                 WriteLiteral("詳細");
                 EndContext();
@@ -339,7 +339,7 @@ WriteAttributeValue("", 1718, item.ImageThumbnailUrl4, 1718, 24, false);
             WriteLiteral("  | \r\n                    ");
             EndContext();
             BeginContext(2470, 103, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "08f9fcb577994062ad81ab0cb2aeaab4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d2bdee9808f4425aa12ccd4f2a4a53d", async() => {
                 BeginContext(2517, 52, true);
                 WriteLiteral("\r\n                        削除する\r\n                    ");
                 EndContext();

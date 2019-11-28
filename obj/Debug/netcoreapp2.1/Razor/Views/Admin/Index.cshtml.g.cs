@@ -72,7 +72,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(92, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "da73ce10463f4b4c8da61c10f3633915", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2bca0901f78740bd9e2bf524c3cb1fbb", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -91,7 +91,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css\"/>\r\n<div class=\"content\">\r\n    <div class=\"row\">\r\n        ");
             EndContext();
             BeginContext(314, 479, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "acda988afefa49b4a2d099791b21ef25", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df58da79a8da4baa9e558684d161a271", async() => {
                 BeginContext(398, 312, true);
                 WriteLiteral(@"
             <div class=""info-box"">
@@ -132,7 +132,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n\r\n        ");
             EndContext();
             BeginContext(805, 489, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "900cb05e102440ffa13faae46ce61be4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "41d947abe1d1423493d9de004e2b1daf", async() => {
                 BeginContext(894, 312, true);
                 WriteLiteral(@"
             <div class=""info-box"">
@@ -173,7 +173,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n\r\n        ");
             EndContext();
             BeginContext(1306, 479, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "80192f98faa3460fac3d2b7ea6fc50e1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "70e26570898d49bbb234ddee4e144035", async() => {
                 BeginContext(1391, 307, true);
                 WriteLiteral(@"
             <div class=""info-box"">
