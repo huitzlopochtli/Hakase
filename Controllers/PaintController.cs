@@ -149,12 +149,10 @@ namespace WebApplication1.Controllers
                 username = HttpContext.User.Identity.Name;
             }
 
-            string path = this._hostingEnvironment.WebRootPath + $"\\images\\user\\{username}\\";
+            //string path = this._hostingEnvironment.WebRootPath + $"\\images\\user\\{username}\\";
+            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/images/user/" + username, filename);
 
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            return path + filename;
+            return path;
 
         }
         public IActionResult Edit(string imgUrl)

@@ -572,6 +572,15 @@ function mousePressed() {
         mouseY <= buttonY + 70) {
         mode = MODES.Apply;
         console.log("Apply Clicked");
+
+
+        if (wallAngleClicked && wallAngleClicked.type) {
+            wallAngleClicked.type.fullImage.loadPixels();
+
+            console.log(wallAngleClicked);
+            console.log(wallAngleClicked.type.fullImage.pixels);
+
+        }
     }
 
 }

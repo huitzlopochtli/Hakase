@@ -35,7 +35,6 @@ namespace WebApplication1.Controllers
         {
             Startup.Progress = 0;
 
-            long totalBytes = files.Sum(f => f.Length);
 
             foreach (IFormFile source in files)
             {
@@ -150,12 +149,10 @@ namespace WebApplication1.Controllers
 
         private string GetPathAndFilename(string filename)
         {
-            string path = this.hostingEnvironment.WebRootPath + "\\images\\materials\\";
+            //string path = this.hostingEnvironment.WebRootPath + "\\images\\materials\\";
+            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/images/materials/", filename);
 
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            return path + filename;
+            return path;
         }
     }
 }
