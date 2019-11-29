@@ -89,3 +89,4 @@ Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.csproj.CopyCo
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.csprojAssemblyReference.cache
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_home.cshtml.g.cs
+Y:\Storage\Codes\C#\Hakase\obj\Debug\netcoreapp2.1\Razor\Views\Paint\DeleteUploadedImage.cshtml.g.cs

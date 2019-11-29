@@ -2,10 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using WebApplication1.Data;
 using WebApplication1.Models;
@@ -145,5 +147,40 @@ namespace WebApplication1.Controllers
             ViewData.Model = imgUrl;
             return View();
         }
+
+        [Authorize]
+        public async Task<IActionResult> DeleteUploadedImage(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var res = await _context.UploadedImages
+                .Include(m => m.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (!User.IsInRole("Admin") && res.User.UserName != HttpContext.User.Identity.Name)
+                return NotFound();
+
+            if (res == null)
+            {
+                return NotFound();
+            }
+
+            return View(res);
+        }
+
+        [HttpPost, ActionName("DeleteUploadedImage")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteUploadedImagePostback(int? id)
+        {
+            var uploadedImg = await _context.UploadedImages.FindAsync(id);
+            _context.UploadedImages.Remove(uploadedImg);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Upload");
+        }
+
     }
 }
