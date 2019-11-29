@@ -104,11 +104,19 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                             _userManager.AddToRoleAsync(user, "Customer").Wait();
                             return RedirectToAction("CustomerPage", "Admin");
                         }
+                        
                     }
+
+
                     catch (AggregateException)
                     {
                         return RedirectToAction("CustomerPage", "Admin");
                     }
+                }
+
+                foreach (var error in resultU.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 

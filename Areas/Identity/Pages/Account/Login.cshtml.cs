@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using WebApplication1.Data;
 
 namespace WebApplication1.Areas.Identity.Pages.Account
 {
@@ -20,11 +21,13 @@ namespace WebApplication1.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<LoginModel> logger)
+        public LoginModel(ApplicationDbContext context, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _context = context;
             _userManager = userManager;
             _logger = logger;
         }
@@ -94,7 +97,15 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                     else if (roles.Any(r => r == "Customer"))
                     {
                         HttpContext.Session.SetString("Role", "Customer");
-                        returnUrl = Url.Content("~/Customer");
+
+                        if (!_context.Customers.Any(c => c.User.UserName == Input.Email))
+                        {
+                            await _signInManager.SignOutAsync();
+                            return Unauthorized();
+
+                        }
+
+                        returnUrl = Url.Content("~/Paint/upload");
                     }
 
                     _logger.LogInformation("User logged in.");

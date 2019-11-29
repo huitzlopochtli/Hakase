@@ -21,6 +21,8 @@ namespace WebApplication1.Models
         [Required(ErrorMessage = "会社の名前(カタ)項目は必須です。")]
         [DisplayName("会社の名前(カタ)")]
         public string CompanyNameKata { get; set; }
+
+        [EmailAddress(ErrorMessage = "有効な電子メールアドレスではありません。")]
         [Required(ErrorMessage = "会社の名前(カタ)項目は必須です。")]
         [DisplayName("会社のメール")]
         public string CompanyEmail { get; set; }
