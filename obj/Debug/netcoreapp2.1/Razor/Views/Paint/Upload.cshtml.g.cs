@@ -77,7 +77,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<div class=\"container\">\r\n    ");
             EndContext();
             BeginContext(242, 293, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "604997683d654a46900461b0cccefd25", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b0fa221fffb04d88a1c09174dbb64205", async() => {
                 BeginContext(340, 188, true);
                 WriteLiteral("\r\n        <label class=\"control-label\"> 壁または床の写真をアップロードします。</label>\r\n        <input type=\"file\" id=\"paintFileUpload\" name=\"source\" class=\"form-control\" placeholder=\"this is a test\"/>\r\n    ");
                 EndContext();
@@ -260,7 +260,7 @@ WriteAttributeValue("", 1729, item.ImageUrl, 1729, 14, false);
             WriteLiteral("                        <td>\r\n                            ");
             EndContext();
             BeginContext(2779, 86, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "92c6636e250c4f98b7e7bd85d076edb3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "51324a448fe444a8bfaff73a77c446ec", async() => {
                 BeginContext(2857, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -297,7 +297,7 @@ WriteAttributeValue("", 1729, item.ImageUrl, 1729, 14, false);
             WriteLiteral(" |\r\n                            ");
             EndContext();
             BeginContext(2897, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb39f13dbec14bf5b427128c9026122d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35333fe429e2441dae66dba45104fd12", async() => {
                 BeginContext(2944, 6, true);
                 WriteLiteral("Delete");
                 EndContext();
@@ -463,7 +463,7 @@ WriteAttributeValue("", 4452, item.ImageUrl, 4452, 14, false);
             WriteLiteral("\r\n                        </td>\r\n                        <td>\r\n                            ");
             EndContext();
             BeginContext(5292, 82, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7314c717b7844e5582cbbe40c89c445c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d070d8bebb4f4890b93553c65949f833", async() => {
                 BeginContext(5366, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -500,7 +500,7 @@ WriteAttributeValue("", 4452, item.ImageUrl, 4452, 14, false);
             WriteLiteral(" |\r\n                            ");
             EndContext();
             BeginContext(5406, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e04bbc09fa884e7a9685aa74c38c445d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9998f54e2b9b4d4ca3844fd50193f67d", async() => {
                 BeginContext(5453, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

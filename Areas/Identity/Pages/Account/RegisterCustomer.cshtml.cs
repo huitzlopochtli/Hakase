@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -70,6 +71,8 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+
+
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
@@ -78,34 +81,37 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
                 if (resultU.Succeeded)
                 {
-                    var resultR = await _userManager.AddToRoleAsync(user, "Customer");
-                    if (resultR.Succeeded)
+                    try
                     {
-                        Input.Customer.UserId = user.Id;
-                        await _dbContext.Customers.AddAsync(Input.Customer);
-                        var resultCustomer = _dbContext.SaveChangesAsync();
+                        var resultR = await _userManager.AddToRoleAsync(user, "Customer");
+                        if (resultR.Succeeded)
+                        {
+                            Input.Customer.UserId = user.Id;
+                            await _dbContext.Customers.AddAsync(Input.Customer);
+                            var resultCustomer = _dbContext.SaveChangesAsync();
 
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var callbackUrl = Url.Page(
-                            "/Account/ConfirmEmail",
-                            pageHandler: null,
-                            values: new { userId = user.Id, code = code },
-                            protocol: Request.Scheme);
+                            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                            var callbackUrl = Url.Page(
+                                "/Account/ConfirmEmail",
+                                pageHandler: null,
+                                values: new { userId = user.Id, code = code },
+                                protocol: Request.Scheme);
 
-                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                            await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                        //await _signInManager.SignInAsync(user, isPersistent: false);
-                        _userManager.AddToRoleAsync(user, "Customer").Wait();
+                            //await _signInManager.SignInAsync(user, isPersistent: false);
+                            _userManager.AddToRoleAsync(user, "Customer").Wait();
+                            return RedirectToAction("CustomerPage", "Admin");
+                        }
+                    }
+                    catch (AggregateException)
+                    {
                         return RedirectToAction("CustomerPage", "Admin");
                     }
-
-                }
-                foreach (var error in resultU.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
+
 
             // If we got this far, something failed, redisplay form
             return Page();

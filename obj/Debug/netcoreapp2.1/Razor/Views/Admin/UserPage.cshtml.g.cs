@@ -67,7 +67,7 @@ using WebApplication1.Models;
 #line default
 #line hidden
             BeginContext(152, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6bbc42feae71417c91d75abfc0cd414b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9deec9f5648e4bda9e67a7ea44434dbc", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -86,7 +86,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css\" />\r\n\r\n");
             EndContext();
             BeginContext(323, 53, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "266b2868f3084c9fa3506f4a739bbc9c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7ddef88208ca43b6976caa5498d4a905", async() => {
                 BeginContext(368, 4, true);
                 WriteLiteral("← 戻る");
                 EndContext();
@@ -110,7 +110,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<br />\r\n<br />\r\n<div class=\"info-box\">\r\n    <span class=\"info-box-icon bg-green\"><i class=\"ion ion-ios-people-outline\"></i></span>\r\n\r\n    <div class=\"info-box-content\">\r\n        <span class=\"info-box-text\"><h1>ユーザー</h1></span>\r\n        ");
             EndContext();
             BeginContext(614, 60, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "28dd34a79af0449396e4ccce52eb9749", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "319a554f53754d1ca468594edc244d89", async() => {
                 BeginContext(666, 4, true);
                 WriteLiteral("顧客登録");
                 EndContext();

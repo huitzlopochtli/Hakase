@@ -18,11 +18,7 @@
   var pos = s.position();
   $(window).on('scroll', function() {
     var windowpos = $(window).scrollTop() > 300;
-    if (windowpos > pos.top) {
-      s.addClass("stick");
-    } else {
-      s.removeClass("stick");
-    }
+
   });
 
   /*----------------------------

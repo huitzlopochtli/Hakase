@@ -64,7 +64,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<h2>Index</h2>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(177, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ca7a8de8df64324918d76fdb6bb38c1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9739e6a8672740ee9d18659df6d88b02", async() => {
                 BeginContext(200, 10, true);
                 WriteLiteral("Create New");
                 EndContext();

@@ -25,6 +25,8 @@ var press = 0;
 
 var appliedClicked = 0;
 
+var mouseClk = 0;
+
 
 // Different Modes
 var MODES = {
@@ -151,6 +153,10 @@ function draw() {
         new createNewAngle(1010, 540).display();
         new angleDelete(1090, 540).display();
 
+    }
+
+    if (mode === MODES.Apply) {
+        new SaveP(1150, 600).display();
     }
 
     pop();
@@ -286,6 +292,8 @@ function draw() {
             circle(mouseX, mouseY, radius * 2, radius * 2);
         }
     }
+
+
 }
 
 function Button(x, y, textStr, type) {
@@ -508,6 +516,8 @@ function mouseDragged() {
 }
 // Check mouse Released
 function mouseReleased() {
+    console.log("Called");
+    mouseClk = 0;
     for (var i = 0; i < wallPapers.length; i++) {
         wallPapers[i].mouseReleased();
     }
@@ -834,7 +844,7 @@ function skewImage(w) {
     var deg = 0;
 
     w.type.fullImage.loadPixels();
-    
+
     //revert(imgCopy, img);
 
     for (let i = 0; i < img.pixels.length; i += 4) {
@@ -873,4 +883,47 @@ function revert(imgPrev, imgNow) {
         imgNow.pixels[i + 2] = imgPrev.pixels[i + 2];
         imgNow.pixels[i + 3] = imgPrev.pixels[i + 3];
     }
+}
+
+function SaveP(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 70;
+    this.height = 50;
+
+    this.display = function () {
+        push();
+        fill(0, 255, 0);
+        if (mouseIsPressed &&
+            mouseX >= this.x &&
+            mouseX <= this.x + this.width &&
+            mouseY >= this.y &&
+            mouseY <= this.y + this.height
+        ) {
+            if (mouseClk === 0) {
+                mouseClk = 1;
+                fill(255, 0, 0);
+                console.log("Saved");
+
+                if (wallAngleClicked.type) {
+                    var saveCanvas = createGraphics(w, h);
+                    var c = get(0, 0, w, h);
+                    saveCanvas.image(c, 0, 0);
+                    var hakase = save(saveCanvas, "hakase", "png");
+
+                    // ajax call to server will go here
+
+
+                    console.log(hakase);
+                }
+            }
+        }
+
+        rect(this.x, this.y, this.width, this.height, 5);
+        fill(0);
+        textSize(14);
+        textAlign(CENTER);
+        text('Save', this.x + this.width / 2, this.y + this.height / 2);
+        pop();
+    };
 }

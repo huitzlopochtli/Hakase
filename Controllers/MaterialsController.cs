@@ -41,8 +41,10 @@ namespace WebApplication1.Controllers
                     new
                     {
                         id = m.Id,
+                        name = m.Name,
                         thumbnail = m.ImageThumbnailUrl3,
-                        image = m.ImageThumbnailUrl1
+                        image = m.ImageThumbnailUrl1,
+                        gridImage = m.ImageThumbnailUrl1
                     }
                     )
                 .Skip((pageNumber - 1) * pageSize)

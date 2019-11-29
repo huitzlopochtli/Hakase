@@ -82,12 +82,12 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(174, 1275, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe3448eecfa546769523560119abb9cc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "501dbc8bb1fc48d98e309e021d09bd9b", async() => {
                 BeginContext(346, 106, true);
                 WriteLiteral("\r\n\r\n    <ul class=\"nav navbar-nav navbar-right\" style=\" margin-top: 15px; font-size: 16px;\">\r\n        <li>");
                 EndContext();
                 BeginContext(452, 81, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0ac9bbf1e2a245b39e4267c92934945b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eff2e709dbfd40ecab31ea36672800d5", async() => {
                     BeginContext(524, 5, true);
                     WriteLiteral("リフォーム");
                     EndContext();
@@ -125,7 +125,7 @@ using Microsoft.AspNetCore.Identity;
                 WriteLiteral("                <li>\r\n                    ");
                 EndContext();
                 BeginContext(697, 55, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d8688a4885f84399ac774cda3a7eda60", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "008e8fc8621e4e8fac2017c6c5d1dfe6", async() => {
                     BeginContext(742, 6, true);
                     WriteLiteral("管理者パネル");
                     EndContext();
@@ -167,7 +167,7 @@ using Microsoft.AspNetCore.Identity;
                 WriteLiteral("            <li>\r\n                ");
                 EndContext();
                 BeginContext(1033, 113, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4509cfb1d138429eafa410bea717f693", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2c774891a52a409fabb34cf2d592317d", async() => {
                     BeginContext(1104, 7, true);
                     WriteLiteral("こんにちは、 ");
                     EndContext();
@@ -212,7 +212,7 @@ using Microsoft.AspNetCore.Identity;
                 WriteLiteral("            <li>");
                 EndContext();
                 BeginContext(1354, 59, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f49b0b6ac864b12abf9cd6e9942e323", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7936a92016ea42ec9e2b5f942ca740db", async() => {
                     BeginContext(1403, 6, true);
                     WriteLiteral("ログインする");
                     EndContext();

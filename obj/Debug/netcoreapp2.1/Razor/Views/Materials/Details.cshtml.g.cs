@@ -70,7 +70,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(134, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "24cc2e59d4584e33a199c3790c558565", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "dc4a7c95a3b845569a1f6e8d0f322ad7", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -89,7 +89,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/ionic/1.3.2/css/ionic.min.css\" />\r\n\r\n");
             EndContext();
             BeginContext(305, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bead79b4b94e4a7082bd5d2145561fb7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b6760eba121241809958a42556d70ae4", async() => {
                 BeginContext(354, 4, true);
                 WriteLiteral("← 戻る");
                 EndContext();
@@ -223,7 +223,7 @@ WriteAttributeValue("", 810, Model.ImageUrl, 810, 15, false);
             WriteLiteral("\r\n        </dd>\r\n        <br />\r\n        <br />\r\n        <br />\r\n        <br />\r\n        <br />\r\n        <dt><button>");
             EndContext();
             BeginContext(1732, 81, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "851ed7b8fcb24cc59c909d76f1d111dc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61d62d4ea8ac4059b3e44a019daf4973", async() => {
                 BeginContext(1805, 4, true);
                 WriteLiteral("編集する");
                 EndContext();
@@ -260,7 +260,7 @@ WriteAttributeValue("", 810, Model.ImageUrl, 810, 15, false);
             WriteLiteral("</dt></button>\r\n        <dd><button>");
             EndContext();
             BeginContext(1849, 83, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a6730c475c274fb7befde48a0088e701", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd7799f59ff54a6282f28c46db8746e9", async() => {
                 BeginContext(1924, 4, true);
                 WriteLiteral("削除する");
                 EndContext();
