@@ -16,7 +16,7 @@ namespace WebApplication1.Models
         [DisplayName("名前(カタ)")]
         public string NameKata { get; set; }
 
-        //[Required(ErrorMessage = "会社の名前(ふり)項目は必須です。")]
+        [Required(ErrorMessage = "会社の名前(ふり)項目は必須です。")]
         [DisplayName("会社の名前(ふり)")]
         public string CompanyNameHira { get; set; }
 
