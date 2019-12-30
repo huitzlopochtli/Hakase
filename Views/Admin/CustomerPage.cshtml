@@ -25,12 +25,15 @@
     <thead>
         <tr>
             <th>#</th>
+            <th>
+                メール
+            </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.NameHira)
-            </th>*@
+            @Html.DisplayNameFor(model => model.NameHira)
+        </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.NameKata)
-            </th>*@
+            @Html.DisplayNameFor(model => model.NameKata)
+        </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.CompanyNameHira)
             </th>
@@ -38,17 +41,17 @@
                 @Html.DisplayNameFor(model => model.CompanyNameKata)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.CompanyEmail)
-            </th>*@
+            @Html.DisplayNameFor(model => model.CompanyEmail)
+        </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.PhoneMobile)
-            </th>*@
+            @Html.DisplayNameFor(model => model.PhoneMobile)
+        </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
-            </th>*@
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Address)
             </th>
@@ -70,57 +73,60 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @{
-                        count += 1;
-                        <p>@count.ToString()</p>
-                    }
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.NameHira)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameKata)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyNameHira)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyNameKata)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.CompanyEmail)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.PhoneMobile)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.DateOfBirth)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserCreated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateModified)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserModified)
-                </td>
-                <td>
-                    <a asp-action="CustomerEdit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="CustomerDelete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @{
+                    count += 1;
+                    <p>@count.ToString()</p>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.NameHira)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameKata)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyNameHira)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyNameKata)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.CompanyEmail)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.PhoneMobile)
+        </td>*@
+            @*<td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserModified)
+            </td>
+            <td>
+                <a asp-action="CustomerEdit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="CustomerDelete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

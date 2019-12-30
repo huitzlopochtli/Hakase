@@ -55,9 +55,20 @@ namespace WebApplication1.Controllers
             return View(dUsers);
         }
 
-        public IActionResult CustomerPage()
+        public async Task<IActionResult> CustomerPage()
         {
-            return View(_context.Customers.OrderByDescending(c => c.DateCreated));
+            var users = _userManager.Users;
+            var customers = _context.Customers.OrderByDescending(c => c.DateCreated);
+            foreach (var customer in customers)
+            {
+                foreach (var user in users)
+                {
+                    if (user.Id == customer.UserId)
+                        customer.User.Email = user.Email;
+                }
+            }
+
+            return View(customers);
         }
 
         public async Task<IActionResult> CustomerEdit(int? id)
