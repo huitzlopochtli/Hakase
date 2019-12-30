@@ -29,6 +29,9 @@ namespace WebApplication1.Models
         [DisplayName("会社のメール")]
         public string CompanyEmail { get; set; }
 
+        
+        public string Pass { get; set; }
+
 
         [DisplayName("電話番号")]
         public string Phone { get; set; }
