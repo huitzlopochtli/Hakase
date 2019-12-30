@@ -45,20 +45,20 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "電子メールフィールドは必須です。")]
+            [EmailAddress(ErrorMessage = "電子メール]フィールドは有効な電子メールアドレスではありません。")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "パスワード]フィールドは必須です。")]
+            [StringLength(16, ErrorMessage = "パスワードは{2}文字以上{1}文字以下である必要があります。", MinimumLength = 4)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "パスワードと確認パスワードが一致しません。")]
             public string ConfirmPassword { get; set; }
 
             public Customer Customer { get; set; }

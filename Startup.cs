@@ -40,11 +40,13 @@ namespace WebApplication1
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = false;
+                {
+                    options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 4;
                 options.Password.RequireUppercase = false;
-            })
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+                })
                 .AddErrorDescriber<JapaneseErrorDescriber>()
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddDefaultUI()
