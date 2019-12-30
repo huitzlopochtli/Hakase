@@ -906,15 +906,27 @@ function SaveP(x, y) {
                 console.log("Saved");
 
                 if (wallAngleClicked.type) {
+                    var id = wallAngleClicked.type.id;
                     var saveCanvas = createGraphics(w, h);
                     var c = get(0, 0, w, h);
                     saveCanvas.image(c, 0, 0);
-                    var hakase = save(saveCanvas, "hakase", "png");
+                    save(saveCanvas, "hakase", "png");
 
                     // ajax call to server will go here
-
-
-                    console.log(hakase);
+                    saveFrames("hakase", "png", 1, 1, file => {
+                        $.ajax({
+                            type: 'GET',
+                            data: file,
+                            url: '/paint/UploadReform?id=' + id,
+                            dataType: 'json',
+                            success: function (data) {
+                                
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
                 }
             }
         }

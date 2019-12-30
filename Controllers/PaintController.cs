@@ -30,7 +30,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction(nameof(Upload));
         }
 
         public IActionResult Upload()
@@ -180,6 +180,17 @@ namespace WebApplication1.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Upload");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UploadReform([FromBody] IFormFile file, [FromQuery] int? id)
+        {
+            if (file == null && id == null)
+            {
+                return NotFound();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
     }
