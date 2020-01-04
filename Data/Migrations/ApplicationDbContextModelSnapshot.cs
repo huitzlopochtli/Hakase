@@ -237,6 +237,8 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<string>("ImageUrl");
 
+                    b.Property<DateTime>("LastLoginDate");
+
                     b.Property<string>("Name")
                         .IsRequired();
 

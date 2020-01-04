@@ -37,6 +37,8 @@ namespace WebApplication1.Models
         [ForeignKey("User")]
         public string UserId { get; set; }
 
+        public DateTime LastLoginDate { get; set; }
+
         public Material()
         {
 
