@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using ImageMagick;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +21,12 @@ namespace WebApplication1.Controllers
     public class MaterialsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public MaterialsController(ApplicationDbContext context)
+        public MaterialsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Materials
@@ -88,6 +94,93 @@ namespace WebApplication1.Controllers
         // GET: Materials/Create
         public IActionResult Create()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Name, Type")]Material model, IFormFile file)
+        {
+            if(ModelState.IsValid)
+            {
+                if (isFileImage(file))
+                {
+                    string filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
+
+                    filename = this.EnsureCorrectFilename(filename);
+
+                    string materialName = filename.Split(".")[0];
+
+                    string serverFilePath = this.GetPathAndFilename(filename);
+
+                    try
+                    {
+                        await file.CopyToAsync(new FileStream(serverFilePath, FileMode.Create));
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    finally
+                    {
+
+                        try
+                        {
+
+                            using (var image = new MagickImage(serverFilePath))
+                            {
+                                image.Resize(40, 40);
+                                image.Strip();
+                                image.Quality = 100;
+                                image.Write(this.GetPathAndFilename("thumbnailUrl4" + filename));
+                            }
+
+                            using (var image = new MagickImage(serverFilePath))
+                            {
+                                image.Resize(995, 665);
+                                image.Strip();
+                                image.Quality = 100;
+                                image.Write(this.GetPathAndFilename("thumbnailUrl1" + filename));
+                            }
+
+                            using (var image = new MagickImage(serverFilePath))
+                            {
+                                image.Resize(400, 400);
+                                image.Strip();
+                                image.Quality = 100;
+                                image.Write(this.GetPathAndFilename("thumbnailUrl2" + filename));
+                            }
+
+                            using (var image = new MagickImage(serverFilePath))
+                            {
+                                image.Resize(200, 200);
+                                image.Strip();
+                                image.Quality = 100;
+                                image.Write(this.GetPathAndFilename("thumbnailUrl3" + filename));
+                            }
+
+                            model.ImageUrl = "/images/materials/" + filename;
+                            model.ImageThumbnailUrl1 = "/images/materials/thumbnailUrl1" + filename;
+                            model.ImageThumbnailUrl2 = "/images/materials/thumbnailUrl2" + filename;
+                            model.ImageThumbnailUrl3 = "/images/materials/thumbnailUrl3" + filename;
+                            model.ImageThumbnailUrl4 = "/images/materials/thumbnailUrl4" + filename;
+                            model.User = await _userManager.GetUserAsync(HttpContext.User);
+
+
+                            await _context.AddAsync(model);
+                            await _context.SaveChangesAsync();
+
+
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Error", e);
+                        }
+                    }
+
+                    return RedirectToAction(nameof(Index));
+                }
+
+            }
             return View();
         }
 
@@ -179,6 +272,46 @@ namespace WebApplication1.Controllers
         private bool MaterialExists(int id)
         {
             return _context.Materials.Any(e => e.Id == id);
+        }
+
+
+        private bool isFileImage(IFormFile source)
+        {
+            var filename = ContentDispositionHeaderValue.Parse(source.ContentDisposition).FileName.ToString().Trim('"').Split(".");
+
+            var extension = filename[filename.Length - 1].ToLower();
+
+            if (extension == "jpg" ||
+                extension == "jpeg" ||
+                extension == "png")
+                return true;
+            return false;
+        }
+
+        [HttpPost]
+        public ActionResult Progress()
+        {
+            return this.Content(Startup.Progress.ToString());
+        }
+
+        private string EnsureCorrectFilename(string filename)
+        {
+            if (filename.Contains("\\"))
+                filename = filename.Substring(filename.LastIndexOf("\\", StringComparison.Ordinal) + 1);
+
+            return filename;
+        }
+
+        private string GetPathAndFilename(string filename)
+        {
+            string pathD = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "materials");
+
+            if (!Directory.Exists(pathD))
+                Directory.CreateDirectory(pathD);
+            //string path = this.hostingEnvironment.WebRootPath + "\\images\\materials\\";
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "materials", filename);
+
+            return path;
         }
     }
 }

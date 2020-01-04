@@ -13,9 +13,9 @@ namespace WebApplication1.Models
     public class Material : BaseEntity
     {
         [Required(ErrorMessage = "の名前が必要です。")]
-        [DisplayName("素材")]
+        [DisplayName("素材の名前")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "画像のURLが必要です。")]
+        //[Required(ErrorMessage = "画像のURLが必要です。")]
         [DisplayName("画像のURL")]
         public string ImageUrl { get; set; }
 

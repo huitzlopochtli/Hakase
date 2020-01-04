@@ -235,8 +235,7 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<string>("ImageThumbnailUrl4");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired();
+                    b.Property<string>("ImageUrl");
 
                     b.Property<string>("Name")
                         .IsRequired();

@@ -12751,23 +12751,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hashibulkhondokar\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Hashib\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Y:\\Storage\\Codes\\C#\\Hakase\\WebApplication1.csproj",
+      "projectUniqueName": "D:\\Codes\\Hakase\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "Y:\\Storage\\Codes\\C#\\Hakase\\WebApplication1.csproj",
-      "packagesPath": "C:\\Users\\hashibulkhondokar\\.nuget\\packages\\",
-      "outputPath": "Y:\\Storage\\Codes\\C#\\Hakase\\obj\\",
+      "projectPath": "D:\\Codes\\Hakase\\WebApplication1.csproj",
+      "packagesPath": "C:\\Users\\Hashib\\.nuget\\packages\\",
+      "outputPath": "D:\\Codes\\Hakase\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\hashibulkhondokar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hashib\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12831,7 +12827,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
