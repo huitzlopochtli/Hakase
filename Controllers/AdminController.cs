@@ -64,7 +64,9 @@ namespace WebApplication1.Controllers
                 foreach (var user in users)
                 {
                     if (user.Id == customer.UserId)
+                    {
                         customer.User.Email = user.Email;
+                    }
                 }
             }
 
