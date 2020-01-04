@@ -71,7 +71,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(92, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "78532a0744d94b909d0dd83bf92ab7cd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "66d5b5e0e2e2479486449901ab54fb99", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -93,7 +93,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n        ");
             EndContext();
             BeginContext(809, 489, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "22967fbfdc70407f8ca6e68d090d7bcb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cfecddcf22cb4106a4e345d957e16dce", async() => {
                 BeginContext(898, 312, true);
                 WriteLiteral(@"
             <div class=""info-box"">
@@ -134,7 +134,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n\r\n        ");
             EndContext();
             BeginContext(1310, 479, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d682a93b4e23442cbd20c04a41e19d4d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df4fb9e7e4ee46a4a4ca73d0769b02e8", async() => {
                 BeginContext(1395, 307, true);
                 WriteLiteral(@"
             <div class=""info-box"">

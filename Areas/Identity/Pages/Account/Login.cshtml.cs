@@ -75,68 +75,78 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
-
-            if (ModelState.IsValid)
+            try
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-                if (result.Succeeded)
+                returnUrl = returnUrl ?? Url.Content("~/");
+
+                if (ModelState.IsValid)
                 {
-                    var currentUser = await _userManager.Users.Where(u => u.Email == Input.Email).SingleOrDefaultAsync();
-
-                    var roles = await _userManager.GetRolesAsync(currentUser);
-
-                    if (roles.Any(r => r == "Admin"))
+                    // This doesn't count login failures towards account lockout
+                    // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                    var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                    if (result.Succeeded)
                     {
-                        HttpContext.Session.SetString("Role", "Admin");
-                        returnUrl = Url.Content("~/Admin");
-                    }
+                        var currentUser = await _userManager.Users.Where(u => u.Email == Input.Email).SingleOrDefaultAsync();
 
-                    else if (roles.Any(r => r == "Customer"))
-                    {
-                        HttpContext.Session.SetString("Role", "Customer");
+                        var roles = await _userManager.GetRolesAsync(currentUser);
 
-                        if (!_context.Customers.Any(c => c.User.UserName == Input.Email))
+                        if (roles.Any(r => r == "Admin"))
                         {
-                            await _signInManager.SignOutAsync();
-                            return Unauthorized();
-
+                            HttpContext.Session.SetString("Role", "Admin");
+                            returnUrl = Url.Content("~/Admin");
                         }
 
-                        var customer = await _context.Customers.Where(c => c.User.UserName == Input.Email)
-                            .SingleOrDefaultAsync();
+                        else if (roles.Any(r => r == "Customer"))
+                        {
+                            HttpContext.Session.SetString("Role", "Customer");
 
-                        customer.LastLoginDate = DateTime.Now;
-                        
-                        _context.Update(customer);
-                        await _context.SaveChangesAsync();
+                            if (!_context.Customers.Any(c => c.User.UserName == Input.Email))
+                            {
+                                await _signInManager.SignOutAsync();
+                                return Unauthorized();
 
-                        returnUrl = Url.Content("~/Paint/upload");
+                            }
+
+                            var customer = await _context.Customers.Where(c => c.User.UserName == Input.Email)
+                                .SingleOrDefaultAsync();
+
+                            customer.LastLoginDate = DateTime.Now;
+
+                            _context.Update(customer);
+                            await _context.SaveChangesAsync();
+
+                            returnUrl = Url.Content("~/Paint/upload");
+                        }
+
+                        _logger.LogInformation("User logged in.");
+                        return LocalRedirect(returnUrl);
                     }
+                    if (result.RequiresTwoFactor)
+                    {
+                        return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    }
+                    if (result.IsLockedOut)
+                    {
+                        _logger.LogWarning("User account locked out.");
+                        return RedirectToPage("./Lockout");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "メールまたはパスワードが間違っています");
+                        return Page();
+                    }
+                }
 
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
-                }
+                // If we got this far, something failed, redisplay form
+                return Page();
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(string.Empty, "メールまたはパスワードが間違っています");
+                return Page();
             }
 
-            // If we got this far, something failed, redisplay form
-            return Page();
+            
         }
     }
 }
