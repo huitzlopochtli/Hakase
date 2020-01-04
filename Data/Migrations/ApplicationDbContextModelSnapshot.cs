@@ -195,6 +195,8 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<DateTime?>("DateOfBirth");
 
+                    b.Property<DateTime?>("LastLoginDate");
+
                     b.Property<string>("NameHira");
 
                     b.Property<string>("NameKata");
@@ -236,8 +238,6 @@ namespace WebApplication1.Data.Migrations
                     b.Property<string>("ImageThumbnailUrl4");
 
                     b.Property<string>("ImageUrl");
-
-                    b.Property<DateTime>("LastLoginDate");
 
                     b.Property<string>("Name")
                         .IsRequired();

@@ -31,13 +31,12 @@ namespace WebApplication1.Models
 
         public int Precedence { get; set; }
 
+        [DisplayName("カテゴリー")]
         public Type Type { get; set; }
 
         public IdentityUser User { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
-
-        public DateTime LastLoginDate { get; set; }
 
         public Material()
         {

@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20191230042642_Password.cs" />
     <Compile Remove="Data\Migrations\20191230042642_Password.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200104193858_DUMP_ME_changedMaterialLastLoginToCustomerLastLogin.cs" />
+    <Compile Remove="Data\Migrations\20200104193858_DUMP_ME_changedMaterialLastLoginToCustomerLastLogin.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -50,6 +50,9 @@ namespace WebApplication1.Models
         public IdentityUser User { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
+        [DisplayFormat(NullDisplayText = "-", DataFormatString = "{0:yyyy:MM:dd hh:mm}")]
+        public DateTime? LastLoginDate { get; set; }
+
 
         public Customer(){ }
 

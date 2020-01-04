@@ -105,6 +105,14 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
                         }
 
+                        var customer = await _context.Customers.Where(c => c.User.UserName == Input.Email)
+                            .SingleOrDefaultAsync();
+
+                        customer.LastLoginDate = DateTime.Now;
+                        
+                        _context.Update(customer);
+                        await _context.SaveChangesAsync();
+
                         returnUrl = Url.Content("~/Paint/upload");
                     }
 
