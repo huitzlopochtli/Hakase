@@ -142,11 +142,11 @@ namespace WebApplication1.Controllers
             return path;
 
         }
-        public IActionResult Edit(string imgUrl)
-        {
-            ViewData.Model = imgUrl;
-            return View();
-        }
+        //public IActionResult Edit(string imgUrl)
+        //{
+        //    ViewData.Model = imgUrl;
+        //    return View();
+        //}
 
         [Authorize]
         public async Task<IActionResult> DeleteUploadedImage(int? id)

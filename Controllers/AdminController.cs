@@ -33,27 +33,27 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public async Task<IActionResult> UserPage()
-        {
-            var users = _userManager.Users;
-            List<DUser> dUsers = new List<DUser>();
-            foreach (var user in users)
-            {
-                var roles = await _userManager.GetRolesAsync(user);
-                string role = "";
-                if (roles[0] == "Admin")
-                    role = "管理者";
-                else if (roles[0] == "Customer")
-                    role = "お客様";
-                dUsers.Add(new DUser()
-                {
-                    Username = user.Email,
-                    Role = role
-                });
-            }
+        //public async Task<IActionResult> UserPage()
+        //{
+        //    var users = _userManager.Users;
+        //    List<DUser> dUsers = new List<DUser>();
+        //    foreach (var user in users)
+        //    {
+        //        var roles = await _userManager.GetRolesAsync(user);
+        //        string role = "";
+        //        if (roles[0] == "Admin")
+        //            role = "管理者";
+        //        else if (roles[0] == "Customer")
+        //            role = "お客様";
+        //        dUsers.Add(new DUser()
+        //        {
+        //            Username = user.Email,
+        //            Role = role
+        //        });
+        //    }
 
-            return View(dUsers);
-        }
+        //    return View(dUsers);
+        //}
 
         public async Task<IActionResult> CustomerPage()
         {

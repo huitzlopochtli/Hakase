@@ -28,28 +28,32 @@ namespace WebApplication1.Controllers
             ApplicationDbInitializer.SeedUsers(_userManager, _roleManager, _context);
             if (User.Identity.IsAuthenticated)
             {
-                HttpContext.Session.SetString("Role", User.IsInRole("Admin") ? "Admin" : "Customer");
+                if (User.IsInRole("Admin"))
+                    return LocalRedirect("~/Admin");
+                else
+                    return View();
             }
             ViewBag.Role = HttpContext.Session.GetString("Role");
-            return View();
+            return LocalRedirect("~/Identity/Account/Login");
         }
 
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
-            return View();
+            return LocalRedirect("~/Identity/Account/Login");
+            
         }
 
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
-
+            return LocalRedirect("~/Identity/Account/Login");
             return View();
         }
 
         public IActionResult Privacy()
         {
+            return LocalRedirect("~/Identity/Account/Login");
             return View();
         }
 
