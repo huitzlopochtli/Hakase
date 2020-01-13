@@ -8,13 +8,60 @@
     bool isAdmin = Context.User.IsInRole("Admin");
 }
 
+<br />
+<br />
 <div class="container">
     <form asp-controller="Paint" asp-action="Upload" enctype="multipart/form-data" class="form-group">
-        <label class="control-label"> 壁または床の写真をアップロードします。</label>
-        <input type="file" id="paintFileUpload" name="source" class="form-control" placeholder="this is a test"/>
+
+
+        <div class="row">
+            <h3 class="overlay"> 壁または床の写真をアップロードします。</h3>
+            <hr />
+            <div class="col-md-offset-1 col-md-5">
+                <div class="form-group">
+
+                    <input type="file" id="img-file" name="source" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <img src="#" alt="" style="max-height: 400px; max-width: 400px;" id="img-preview" />
+                </div>
+
+            </div>
+
+        </div>
+        <hr />
+        <div class="row">
+            <div class="form-group col-md-offset-5 col-md-2">
+                <input type="submit" value="アップロードする" class="btn btn-success" disabled id="submit" />
+            </div>
+        </div>
+        <hr />
     </form>
     <br />
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img-preview').attr('src', e.target.result);
+                $('#submit').removeAttr('disabled');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#img-file").change(function () {
+        readURL(this);
+    });
+</script>
 
 
 

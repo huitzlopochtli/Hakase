@@ -70,7 +70,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n");
             EndContext();
             BeginContext(167, 99, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a5cc6eb27263480eafbe3872b586cd24", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "adba7396ede240fca1c5cfb25855c345", async() => {
                 BeginContext(252, 10, true);
                 WriteLiteral("新しい素材を作成する");
                 EndContext();
@@ -224,7 +224,7 @@ WriteAttributeValue("", 1295, item.ImageThumbnailUrl4, 1295, 24, false);
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(1890, 75, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef2c9d5c3e20482a83b3222482a9784c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "adbebaf4c7a74b0a974868127a0652dc", async() => {
                 BeginContext(1959, 2, true);
                 WriteLiteral("詳細");
                 EndContext();
@@ -260,7 +260,7 @@ WriteAttributeValue("", 1295, item.ImageThumbnailUrl4, 1295, 24, false);
             WriteLiteral("  |\r\n                    ");
             EndContext();
             BeginContext(1990, 124, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c331ca1309594aef829327ecdc1a567c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e640762ef194626b81f5496da3b7e41", async() => {
                 BeginContext(2060, 50, true);
                 WriteLiteral("\r\n                        削除\r\n                    ");
                 EndContext();

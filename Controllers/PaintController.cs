@@ -36,29 +36,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult Upload()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-
-                if (HttpContext.User.IsInRole("Admin"))
-                {
-                    var reformImages = _context.ReformedImages.OrderByDescending(r => r.DateCreated)
-                        .ThenByDescending(r => r.DateModified);
-                    var uploadedImages = _context.UploadedImages.OrderByDescending(u => u.DateCreated)
-                        .ThenByDescending(u => u.DateModified);
-                    var res = new UploadReformListViewModel(reformImages, uploadedImages);
-                    return View(res);
-                }
-                else
-                {
-                    var reformImages = _context.ReformedImages.Where(r => r.UploadedImage.UserCreated == HttpContext.User.Identity.Name).OrderByDescending(r => r.DateCreated)
-                        .ThenByDescending(r => r.DateModified);
-                    var uploadedImages = _context.UploadedImages.Where(u => u.UserCreated == HttpContext.User.Identity.Name).OrderByDescending(u => u.DateCreated)
-                        .ThenByDescending(u => u.DateModified);
-                    var res = new UploadReformListViewModel(reformImages, uploadedImages);
-                    return View(res);
-                }
-
-            }
+            
 
             return View();
         }
