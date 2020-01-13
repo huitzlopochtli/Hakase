@@ -5,33 +5,25 @@
     ViewData["Title"] = "ログインする";
 }
 
+<h4>博士.comのアカウントを使用してログインします。</h4>
+<hr />
 <div class="row">
-    <div class="col-sm-4 col-sm-offset-8">
+    <div class="col-sm-4 col-sm-offset-4">
         <section>
             <form method="post">
-                <h4>博士.comのアカウントを使用してログインします。</h4>
-                <hr />
+                
+                
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Input.Email">メール</label>
-                    <input asp-for="Input.Email" class="form-control" />
+                    <input asp-for="Input.Email" class="form-control" placeholder="メールアドレス"/>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Password">パスワード</label>
-                    <input asp-for="Input.Password" class="form-control" />
+                    <input asp-for="Input.Password" class="form-control" placeholder="パスワード"/>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            私を覚えてますか？
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">ログイン</button>
+                </div>  
+                <div class="form-group col-md-offset-1  col-md-10">
+                    <button type="submit" class="btn btn-block">ログイン</button>
                 </div>
                 @*<div class="form-group">
                     <p>
