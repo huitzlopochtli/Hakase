@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAi8BA16tS6U+PgHmvkI2L3AAAAAACAAAAAAAQZgAAAAEAACAAAADkykjNb98cHJv/QA8pAoxn9MhBkgCWnTG0U0HxRY9HPgAAAAAOgAAAAAIAACAAAADfHXnGAaNMG/ELX6SFkB4SjaMsG9rPvZnZ5dWUqCRrQiAAAABiQVB+r4aUKu8oj/vsTlMBeUj58GlkteDjVNYbLC1v8kAAAAA2hhkRqYukzuuwo2c5EhsNvoUfwLhL6UswFMZdsfGYnYPLMVsthEPjrTQUp57/ZjryVmtNdq4F59qqlnB73Pi7</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQHMv5iXU9kmRO4rRP1v1agAAAAACAAAAAAAQZgAAAAEAACAAAAC6F8tqDzbg7pwbObT0bo3oT/knkmO0isYboO9hd5+iEQAAAAAOgAAAAAIAACAAAAD7gosO5V5TMNxj2O5Pw5DGxAlaLR/+Qd10rWA0LQHkniAAAAApOMK2KTMk+h0XOFxAC8nRW2Zf8p51Watx11MO89RvO0AAAAAV5nuuJjRbmmzCwRqKP+rjBv2zor4VsQlzDiu6NnBcPjEN4oSn1HZuAyoY/i4AyTtY83nQKqWx5Pu+8bZZtcZf</EncryptedPassword>
     <_PublishTargetUrl>ftp://153.127.8.143</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
@@ -232,5 +232,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="wwwroot/lib/p5/p5.min.js">
       <publishTime>11/08/2019 12:46:45</publishTime>
     </File>
+  </ItemGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>server=localhost%3bport=3306%3bdatabase=hakase%3buid=root%3bpassword=w5Narpn6%24</Value>
+    </DestinationConnectionStrings>
   </ItemGroup>
 </Project>
