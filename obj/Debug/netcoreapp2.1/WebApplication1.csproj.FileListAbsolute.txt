@@ -184,3 +184,4 @@ D:\Codes\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.pdb
 D:\Codes\Hakase\obj\Debug\netcoreapp2.1\WebApplication1.csproj.CopyComplete
 D:\Codes\Hakase\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Create2.cshtml.g.cs
 D:\Codes\Hakase\obj\Debug\netcoreapp2.1\Razor\Views\Paint\ShowAll.cshtml.g.cs
+D:\Codes\Hakase\obj\Debug\netcoreapp2.1\Razor\Views\CustomerPanel\Index.cshtml.g.cs

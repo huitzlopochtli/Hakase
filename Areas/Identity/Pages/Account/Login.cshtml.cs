@@ -115,7 +115,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                             _context.Update(customer);
                             await _context.SaveChangesAsync();
 
-                            returnUrl = Url.Content("~/Paint/upload");
+                            returnUrl = Url.Content("~/customerPanel/index");
                         }
 
                         _logger.LogInformation("User logged in.");

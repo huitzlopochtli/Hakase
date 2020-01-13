@@ -31,31 +31,12 @@ namespace WebApplication1.Controllers
                 if (User.IsInRole("Admin"))
                     return LocalRedirect("~/Admin");
                 else
-                    return View();
+                    return LocalRedirect("~/customerPanel");
             }
             ViewBag.Role = HttpContext.Session.GetString("Role");
             return LocalRedirect("~/Identity/Account/Login");
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-            return LocalRedirect("~/Identity/Account/Login");
-            
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-            return LocalRedirect("~/Identity/Account/Login");
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return LocalRedirect("~/Identity/Account/Login");
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

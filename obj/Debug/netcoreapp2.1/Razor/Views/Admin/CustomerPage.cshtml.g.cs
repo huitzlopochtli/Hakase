@@ -71,7 +71,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n<br />\r\n<br />\r\n\r\n");
             EndContext();
             BeginContext(190, 105, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6830681f66614a3d9e6e182a13f78dc5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b611000523a4253aab0cca1f73e9113", async() => {
                 BeginContext(285, 6, true);
                 WriteLiteral("新規顧客登録");
                 EndContext();
@@ -173,7 +173,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(1339, 83, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3ae4f5a9917d4c8f9944a000a40d3c33", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "17c75ad4263f4ba6bdfe0712f1045a16", async() => {
                 BeginContext(1416, 2, true);
                 WriteLiteral("編集");
                 EndContext();
@@ -209,7 +209,7 @@ using WebApplication1.Models;
             WriteLiteral(" |\r\n                    ");
             EndContext();
             BeginContext(1446, 84, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef8edb61a32c424084279474cacb8b32", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5613d078d1e2417ba79902eadd1ccbb6", async() => {
                 BeginContext(1524, 2, true);
                 WriteLiteral("削除");
                 EndContext();

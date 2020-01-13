@@ -77,8 +77,8 @@
                             </td>
                         }
                         <td>
-                            <a asp-controller="Paint" asp-action="Edit" asp-route-imgUrl="@item.ImageUrl">Edit</a> |
-                            <a asp-action="DeleteUploadedImage" asp-route-id="@item.Id">Delete</a>
+                            <a asp-controller="Paint" asp-action="Edit" asp-route-imgUrl="@item.ImageUrl">編集</a> |
+                            <a asp-action="DeleteUploadedImage" asp-route-id="@item.Id">削除</a>
                         </td>
                     </tr>
                 }
@@ -144,8 +144,8 @@
                             @Html.DisplayFor(modelItem => item.UserModified)
                         </td>
                         <td>
-                            <a asp-controller="Paint" asp-action="Edit" asp-route-id="@item.ImageUrl">Edit</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a asp-controller="Paint" asp-action="Edit" asp-route-id="@item.ImageUrl">編集</a> |
+                            <a asp-controller="Paint" asp-action="Delete" asp-route-id="@item.Id">削除</a>
                         </td>
                     </tr>
                 }
