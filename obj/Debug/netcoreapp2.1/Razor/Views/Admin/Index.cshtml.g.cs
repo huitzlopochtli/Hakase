@@ -78,7 +78,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(92, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e3cb8515af734108a0e05b728c67ed0e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "af6390fc6a0448288238c36fd70f1af8", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -111,7 +111,7 @@ using WebApplication1.Models;
                         •  ");
             EndContext();
             BeginContext(923, 94, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "56fec4053fe046a4aaf2cd076cd4aef1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff8303e9567243f4a2c70ae558031253", async() => {
                 BeginContext(1007, 6, true);
                 WriteLiteral("新規顧客登録");
                 EndContext();
@@ -136,7 +136,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n                    </span>\r\n\r\n                    <br />\r\n                    <span class=\"info-box-text\">\r\n                        • ");
             EndContext();
             BeginContext(1154, 100, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "583cd788784e4aa69aec404ecc8399bb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2bcf3bf404bb4b8e8c997eee612f9b5f", async() => {
                 BeginContext(1246, 4, true);
                 WriteLiteral("顧客一覧");
                 EndContext();
@@ -178,7 +178,7 @@ using WebApplication1.Models;
                         •  ");
             EndContext();
             BeginContext(1994, 86, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1245821255d040fbb065f659306da24d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bff401ec4812458081a911d4dddd7085", async() => {
                 BeginContext(2068, 8, true);
                 WriteLiteral("素材アップロード");
                 EndContext();
@@ -203,7 +203,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n                    </span>\r\n\r\n                    <br />\r\n                    <span class=\"info-box-text\">\r\n                        • ");
             EndContext();
             BeginContext(2217, 97, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4a5d5f0f1c7c463090df94f7461df849", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "68d22fae1c8d439ab4dc5abc1e2bbbd9", async() => {
                 BeginContext(2306, 4, true);
                 WriteLiteral("素材一覧");
                 EndContext();
@@ -249,7 +249,7 @@ using WebApplication1.Models;
                         •  ");
             EndContext();
             BeginContext(3096, 81, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "411fef259f2c47dba87ed485228e8074", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d94b6e30e86451abb03ac3ac56254f8", async() => {
                 BeginContext(3166, 7, true);
                 WriteLiteral("新規リフォーム");
                 EndContext();
@@ -274,7 +274,7 @@ using WebApplication1.Models;
             WriteLiteral("\r\n                    </span>\r\n\r\n                    <br />\r\n                    <span class=\"info-box-text\">\r\n                        • ");
             EndContext();
             BeginContext(3314, 98, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a4b6c9859ec40f7bd900c944fceee66", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1dfd97b083644b8d9d38706850c143d8", async() => {
                 BeginContext(3401, 7, true);
                 WriteLiteral("リフォーム一覧");
                 EndContext();
