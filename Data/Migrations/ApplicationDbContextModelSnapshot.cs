@@ -186,8 +186,7 @@ namespace WebApplication1.Data.Migrations
                     b.Property<string>("CompanyNameHira")
                         .IsRequired();
 
-                    b.Property<string>("CompanyNameKata")
-                        .IsRequired();
+                    b.Property<string>("CompanyNameKata");
 
                     b.Property<DateTime?>("DateCreated");
 

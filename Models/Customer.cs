@@ -17,10 +17,10 @@ namespace WebApplication1.Models
         public string NameKata { get; set; }
 
         [Required(ErrorMessage = "会社の名前(ふり)項目は必須です。")]
-        [DisplayName("会社の名前(ふり)")]
+        [DisplayName("会社の名前")]
         public string CompanyNameHira { get; set; }
 
-        [Required(ErrorMessage = "会社の名前(カタ)項目は必須です。")]
+        //[Required(ErrorMessage = "会社の名前(カタ)項目は必須です。")]
         [DisplayName("会社の名前(カタ)")]
         public string CompanyNameKata { get; set; }
 
