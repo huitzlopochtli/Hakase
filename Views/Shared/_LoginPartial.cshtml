@@ -7,11 +7,10 @@
 <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})" method="post" id="logoutForm" class="navbar-right">
 
     <ul class="nav navbar-nav navbar-right" style=" margin-top: 15px; font-size: 16px;">
-        <li><a asp-area="" asp-controller="Paint" asp-action="Upload" class="right">リフォーム</a></li>
 
         @if (SignInManager.IsSignedIn(User))
         {
-            if (User.IsInRole("Admin"))
+            @*if (User.IsInRole("Admin"))
             {
                 <li>
                     <a asp-controller="Admin" asp-action="Index">管理者パネル</a>
@@ -19,10 +18,10 @@
             }
             else if (User.IsInRole("Customer"))
             {
-                @*<li>
+                <li>
                     <a asp-controller="Admin" asp-action="Index">お客様パネル</a>
-                </li>*@
-            }
+                </li>
+            }*@
 
             <li>
                 <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">こんにちは、 @UserManager.GetUserName(User)!</a>
